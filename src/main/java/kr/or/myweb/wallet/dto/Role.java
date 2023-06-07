@@ -1,4 +1,4 @@
-package dto;
+package kr.or.myweb.wallet.dto;
 
 public class Role {
 	public Role() {
