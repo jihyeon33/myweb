@@ -4,11 +4,18 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class BankAccountDto {
+	private Long id;
 	private String accountId;
 	private String bankName;
 	private BigDecimal balance;
 	private Timestamp regDate;
 	private Timestamp updateDate;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getAccountId() {
 		return accountId;
 	}
@@ -39,6 +46,5 @@ public class BankAccountDto {
 	public void setUpdateDate(Timestamp updateDate) {
 		this.updateDate = updateDate;
 	}
-
 
 }
