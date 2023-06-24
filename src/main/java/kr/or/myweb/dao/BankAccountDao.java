@@ -26,7 +26,7 @@ public class BankAccountDao {
 	
 	public BankAccountDao(DataSource dataSource){
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
-		this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("bankAccount").usingGeneratedKeyColumns("accountId");
+		this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("bank_account").usingGeneratedKeyColumns("id");
 	}
 	//select
 	public List<BankAccountDto> selectBankAccounts(Integer start,Integer limit){
