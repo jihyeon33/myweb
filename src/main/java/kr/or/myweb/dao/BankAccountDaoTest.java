@@ -34,11 +34,15 @@ public class BankAccountDaoTest {
 		System.out.println(cnt);*/
 		
 		//selectAll 테스트성공 
-		List<BankAccountDto> accounts= new ArrayList<>();
+/*		List<BankAccountDto> accounts= new ArrayList<>();
 		accounts = bankAccountDao.selectBankAccounts(0, 3);
 		for(BankAccountDto dto : accounts) {
 			System.out.println(dto.getId());
-		}
+		}*/
+		
+		//selectNowDate 테스트 성공
+		String nowTime = bankAccountDao.selectNowTime();
+		System.out.println(nowTime);
 	}
 
 }

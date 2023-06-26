@@ -59,5 +59,10 @@ public class BankAccountDao {
 		cnt = jdbc.queryForObject(SELECT_COUNT, Collections.emptyMap(), Integer.class);
 		return cnt;
 	}
+	//selectNowTime
+	public String selectNowTime() {
+		String time = jdbc.queryForObject(SELECT_NOW_TIME, Collections.emptyMap(), String.class);
+		return time;
+	}
 
 }
