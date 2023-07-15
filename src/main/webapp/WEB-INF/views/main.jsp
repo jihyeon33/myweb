@@ -23,7 +23,7 @@
 	<h5>접속하신 현재 시간은 ${time} 입니다.</h5>
 	<h5>어떤 서비스를 이용하고 싶으신가요?</h5>
 	<div class="card" style="width: 18rem;">
-	  <img src="img/saamee.jpg" class="card-img-top" alt="...">
+	  <img src="resources/static/img/saamee.jpg" class="card-img-top" alt="...">
 	  <div class="card-body">
 	    <h5 class="card-title">Bank</h5>
 	    <p class="card-text">manage your bank accounts.</p>

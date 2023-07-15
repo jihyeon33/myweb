@@ -1,1 +1,1 @@
-console.log("js파일입니다.");
+console.log("bankMain.js파일입니다.");
