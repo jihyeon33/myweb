@@ -1,5 +1,8 @@
 package kr.or.myweb.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.or.myweb.dto.BankAccountDto;
 import kr.or.myweb.dto.LoginDto;
 import kr.or.myweb.service.BankAccountService;
 
@@ -36,6 +40,10 @@ public class BankAccountController {
 		model.addAttribute("time", time);
 		model.addAttribute("userName", userName);
         //String myname= httpSession.getAttribute("loginDto");
+		
+		List<BankAccountDto> accountlist = new ArrayList<BankAccountDto>();
+		accountlist = bankAccountService.getAccountList(0, 2);
+		model.addAttribute("accountlist",accountlist);
         return "bank/bankMain";
     }
 }
