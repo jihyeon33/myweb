@@ -10,5 +10,9 @@ public class StockController {
 	public String doStockMain() {
 		return "stock/stockMain";
 	}
+	@GetMapping(path="/stock/stockRegister.do")
+	public String doStockRegisterPage() {
+		return "stock/stockRegister";
+	}
 
 }

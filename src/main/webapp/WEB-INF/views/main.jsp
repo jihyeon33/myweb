@@ -31,11 +31,19 @@
 	  </div>
 	</div>
 	<div class="card" style="width: 18rem;">
-	  <img src="..." class="card-img-top" alt="...">
+	  <img src="resources/static/img/saamee.jpg" class="card-img-top" alt="...">
 	  <div class="card-body">
 	    <h5 class="card-title">Stock</h5>
 	    <p class="card-text">manage your stock accounts.</p>
 	    <a href="stock/stockMain.do" class="btn btn-primary">stock 서비스 이용하기</a>
+	  </div>
+	</div>
+	<div class="card" style="width: 18rem;">
+	  <img src="resources/static/img/saamee.jpg" class="card-img-top" alt="...">
+	  <div class="card-body">
+	    <h5 class="card-title">Loan</h5>
+	    <p class="card-text">manage your loan amounts.</p>
+	    <a href="loan/loanMain.do" class="btn btn-primary">loan 서비스 이용하기</a>
 	  </div>
 	</div>
 </body>
