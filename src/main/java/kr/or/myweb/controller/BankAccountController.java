@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.myweb.dto.BankAccountDto;
@@ -44,6 +47,17 @@ public class BankAccountController {
 		List<BankAccountDto> accountlist = new ArrayList<BankAccountDto>();
 		accountlist = bankAccountService.getAccountList(0, 2);
 		model.addAttribute("accountlist",accountlist);
-        return "bank/bankMain";
+        return "bank/bankMain"; 
+    }
+    @PostMapping(path="/bank/test.json")
+    @ResponseBody
+    public List<BankAccountDto> jsonTest(@RequestBody BankAccountDto bankAccountDto){
+    	System.out.println(bankAccountDto.getAccountId());
+    	System.out.println(bankAccountDto.getBankName());
+    	System.out.println(bankAccountDto.getBalance());
+        //List<BankAccountDto> list = new ArrayList<BankAccountDto>();
+    	List<BankAccountDto> list = bankAccountService.getAccountList(0, 2);
+        
+        return list;
     }
 }

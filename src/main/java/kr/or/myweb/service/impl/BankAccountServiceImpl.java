@@ -1,6 +1,6 @@
 package kr.or.myweb.service.impl;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +25,8 @@ public class BankAccountServiceImpl implements BankAccountService {
 	}
     @Override
 	public List<BankAccountDto> getAccountList(Integer start,Integer limit){
-		List<BankAccountDto> accountList = new ArrayList<BankAccountDto>();
-		accountList = bankAccountDao.selectBankAccounts(start, limit);
+//		List<BankAccountDto> accountList = new ArrayList<BankAccountDto>();
+		List<BankAccountDto> accountList = bankAccountDao.selectBankAccounts(start, limit);
 		return accountList;
 	}
 }

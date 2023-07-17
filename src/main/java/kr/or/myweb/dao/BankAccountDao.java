@@ -1,6 +1,6 @@
 package kr.or.myweb.dao;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -30,11 +30,11 @@ public class BankAccountDao {
 	}
 	//select
 	public List<BankAccountDto> selectBankAccounts(Integer start,Integer limit){
-		List<BankAccountDto> accounts = new ArrayList<BankAccountDto>();
+//		List<BankAccountDto> accounts = new ArrayList<BankAccountDto>();
 		Map<String,Integer> params = new HashMap<>();
 		params.put("start", start);
 		params.put("limit", limit);
-		accounts = jdbc.query(SELECT_ALL, params, rowMapper);
+		List<BankAccountDto> accounts = jdbc.query(SELECT_ALL, params, rowMapper);
 		return accounts;
 	}
 	//insert
