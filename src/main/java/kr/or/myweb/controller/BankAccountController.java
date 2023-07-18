@@ -60,4 +60,19 @@ public class BankAccountController {
         
         return list;
     }
+    @PostMapping(path="/bank/accountRegister.do")
+    @ResponseBody
+    public BankAccountDto accountRegister(BankAccountDto bankAccountDto){
+    	BankAccountDto dto = new BankAccountDto();
+    	System.out.println(bankAccountDto.getAccountId());
+    	System.out.println(bankAccountDto.getBankName());
+    	System.out.println(bankAccountDto.getBalance());
+        
+    	dto.setBankName(bankAccountDto.getBankName());
+    	dto.setAccountId(bankAccountDto.getAccountId());
+    	dto.setBalance(bankAccountDto.getBalance());
+    	
+        
+        return dto;
+    }
 }

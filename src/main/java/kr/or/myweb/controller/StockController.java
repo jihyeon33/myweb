@@ -11,7 +11,7 @@ public class StockController {
 		return "stock/stockMain";
 	}
 	@GetMapping(path="/stock/stockRegister.do")
-	public String doStockRegisterPage() {
+	public String doStockRegister() {
 		return "stock/stockRegister";
 	}
 

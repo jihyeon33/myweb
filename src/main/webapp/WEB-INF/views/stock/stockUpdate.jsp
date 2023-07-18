@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-loanMain 입니다.
-<a href="loanUpdate.do">업데이트하기</a>
-<a href="loanRegister.do">등록하기</a>
+stockUpdate 입니다.
 </body>
 </html>

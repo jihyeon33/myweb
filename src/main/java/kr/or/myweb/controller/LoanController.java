@@ -13,5 +13,9 @@ public class LoanController {
 	public String doLoanUpdate() {
 		return "loan/loanUpdate";
 	}
+	@GetMapping(path="/loan/loanRegister.do")
+	public String doLoanRegister() {
+		return "loan/loanRegister";
+	}
 
 }
