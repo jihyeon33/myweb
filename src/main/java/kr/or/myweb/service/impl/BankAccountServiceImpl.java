@@ -29,4 +29,9 @@ public class BankAccountServiceImpl implements BankAccountService {
 		List<BankAccountDto> accountList = bankAccountDao.selectBankAccounts(start, limit);
 		return accountList;
 	}
+	@Override
+	public int getAccountsTotalCnt() {
+		int cnt = bankAccountDao.selectCnt();
+		return cnt;
+	}
 }

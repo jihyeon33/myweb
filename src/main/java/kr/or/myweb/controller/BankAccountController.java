@@ -1,5 +1,6 @@
 package kr.or.myweb.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,27 +28,12 @@ public class BankAccountController {
     public BankAccountController(BankAccountService bankAccountService){
         this.bankAccountService = bankAccountService;
     }
-    
+///////TEST용 코드,, 정상 동작///////////////////////////////////////////////////////////////////////////////////////////////////    
     @GetMapping(path = "/test")
     public String test(ModelMap model) throws Exception {
         String time = bankAccountService.getTime();
         model.addAttribute("time", time);
         return "list";
-    }
-    @GetMapping(path = "/bank/bankMain.do")
-    public String test(HttpSession httpSession, RedirectAttributes rttr,ModelMap model) throws Exception {
-
-		String time =bankAccountService.getTime();
-		LoginDto loginDto= (LoginDto) httpSession.getAttribute("loginDto");
-		String userName=loginDto.getUserId();
-		model.addAttribute("time", time);
-		model.addAttribute("userName", userName);
-        //String myname= httpSession.getAttribute("loginDto");
-		
-		List<BankAccountDto> accountlist = new ArrayList<BankAccountDto>();
-		accountlist = bankAccountService.getAccountList(0, 2);
-		model.addAttribute("accountlist",accountlist);
-        return "bank/bankMain"; 
     }
     @PostMapping(path="/bank/test.json")
     @ResponseBody
@@ -62,7 +48,7 @@ public class BankAccountController {
     }
     @PostMapping(path="/bank/accountRegister.do")
     @ResponseBody
-    public BankAccountDto accountRegister(BankAccountDto bankAccountDto){
+    public BankAccountDto doAccountRegister(BankAccountDto bankAccountDto){
     	BankAccountDto dto = new BankAccountDto();
     	System.out.println(bankAccountDto.getAccountId());
     	System.out.println(bankAccountDto.getBankName());
@@ -74,5 +60,44 @@ public class BankAccountController {
     	
         
         return dto;
+    }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////    
+    @GetMapping(path = "/bank/bankMain.do")
+    public String doBankMain(HttpSession httpSession, RedirectAttributes rttr,ModelMap model) throws Exception {
+
+		String time =bankAccountService.getTime();
+		LoginDto loginDto= (LoginDto) httpSession.getAttribute("loginDto");
+		String userName=loginDto.getUserId();
+		model.addAttribute("time", time);
+		model.addAttribute("userName", userName);
+        //String myname= httpSession.getAttribute("loginDto");
+		
+		List<BankAccountDto> accountlist = new ArrayList<BankAccountDto>();
+		accountlist = bankAccountService.getAccountList(0, 2);
+		model.addAttribute("accountlist",accountlist);
+        return "bank/bankMain"; 
+    }
+    @GetMapping(path="/bank/accountlist.json")
+    @ResponseBody
+    public List<BankAccountDto> getAccountlist(){
+    	int totalAccountsCnt= bankAccountService.getAccountsTotalCnt();
+    	List<BankAccountDto> accountlist= bankAccountService.getAccountList(0, totalAccountsCnt);
+    	return accountlist;
+    }
+    @PostMapping(path="/bank/accountRegister.json")
+    @ResponseBody
+    public BankAccountDto accountRegister(@RequestBody BankAccountDto bankAccountDto) {
+    	BankAccountDto dto= null;
+    	return dto;
+    }
+    @PostMapping(path="/bank/balancePlus.json")
+    public BigDecimal balancePlus(@RequestBody BankAccountDto bankAccountDto) {
+    	BigDecimal balance= bankAccountDto.getBalance();
+    	return balance;
+    }
+    @PostMapping(path="/bank/balanceMinus.json")
+    public BigDecimal balanceMinus(@RequestBody BankAccountDto bankAccountDto) {
+    	BigDecimal balance= bankAccountDto.getBalance();
+    	return balance;
     }
 }

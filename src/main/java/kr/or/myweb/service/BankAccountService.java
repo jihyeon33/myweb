@@ -7,5 +7,5 @@ import kr.or.myweb.dto.BankAccountDto;
 public interface BankAccountService {
 	public String getTime();
 	public List<BankAccountDto> getAccountList(Integer start,Integer limit);	
-	
+	public int getAccountsTotalCnt();
 }
