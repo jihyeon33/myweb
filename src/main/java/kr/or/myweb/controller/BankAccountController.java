@@ -46,21 +46,7 @@ public class BankAccountController {
         
         return list;
     }
-    @PostMapping(path="/bank/accountRegister.do")
-    @ResponseBody
-    public BankAccountDto doAccountRegister(BankAccountDto bankAccountDto){
-    	BankAccountDto dto = new BankAccountDto();
-    	System.out.println(bankAccountDto.getAccountId());
-    	System.out.println(bankAccountDto.getBankName());
-    	System.out.println(bankAccountDto.getBalance());
-        
-    	dto.setBankName(bankAccountDto.getBankName());
-    	dto.setAccountId(bankAccountDto.getAccountId());
-    	dto.setBalance(bankAccountDto.getBalance());
-    	
-        
-        return dto;
-    }
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////    
     @GetMapping(path = "/bank/bankMain.do")
     public String doBankMain(HttpSession httpSession, RedirectAttributes rttr,ModelMap model) throws Exception {
@@ -72,9 +58,17 @@ public class BankAccountController {
 		model.addAttribute("userName", userName);
         //String myname= httpSession.getAttribute("loginDto");
 		
-		List<BankAccountDto> accountlist = new ArrayList<BankAccountDto>();
-		accountlist = bankAccountService.getAccountList(0, 2);
-		model.addAttribute("accountlist",accountlist);
+		//총 계좌 수
+		int totalCnt= bankAccountService.getAccountsTotalCnt();
+		//총 잔액
+		BigDecimal totalBalance = new BigDecimal(0);
+    	List<BankAccountDto> accountlist= bankAccountService.getAccountList(0, totalCnt);
+    	for(BankAccountDto account :accountlist) {
+    		totalBalance =totalBalance.add(account.getBalance());
+    	}
+    	model.addAttribute("totalCnt", totalCnt);
+    	model.addAttribute("totalBalance", totalBalance);
+		
         return "bank/bankMain"; 
     }
     @GetMapping(path="/bank/accountlist.json")
@@ -85,11 +79,11 @@ public class BankAccountController {
     	return accountlist;
     }
     @PostMapping(path="/bank/accountRegister.json")
-    @ResponseBody
-    public BankAccountDto accountRegister(@RequestBody BankAccountDto bankAccountDto) {
-    	BankAccountDto dto= null;
-    	return dto;
+    public String doAccountRegister(BankAccountDto bankAccountDto){
+    	bankAccountService.registerAccount(bankAccountDto);
+    	return "bank/bankMain";
     }
+
     @PostMapping(path="/bank/balancePlus.json")
     @ResponseBody
     public BigDecimal balancePlus(@RequestBody BankAccountDto bankAccountDto) {

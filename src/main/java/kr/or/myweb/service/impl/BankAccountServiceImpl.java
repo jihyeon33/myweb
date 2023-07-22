@@ -53,4 +53,9 @@ public class BankAccountServiceImpl implements BankAccountService {
 		bankAccountDao.updateBalance(accountId,nowBalance);
 		return;
 	}
+	@Override
+	public Long registerAccount(BankAccountDto bankAccountDto) {
+		Long id = bankAccountDao.insertBankAccount(bankAccountDto);
+		return id;
+	}
 }

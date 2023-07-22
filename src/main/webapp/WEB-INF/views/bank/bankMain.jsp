@@ -22,8 +22,8 @@
 	
 	<div>
 		<ul>
-			<li>${userName}님이 보유하신 계좌는 총 x 개 입니다.</li>
-			<li>보유 잔액은 총 x원 입니다.</li>
+			<li>${userName}님이 보유하신 계좌는 총 ${totalCnt}개 입니다.</li>
+			<li>보유 잔액은 총 ${totalBalance}원 입니다.</li>
 		</ul>
 	</div>
 	
@@ -31,7 +31,7 @@
 	
 	<div>
 		계좌를 추가로 등록하시겠습니까?
-		<form action="accountRegister.do" method="POST">
+		<form action="accountRegister.json" method="POST">
 			<p>은행 : 
 				<select name="bankName">
 					<option value="국민">국민은행</option>
