@@ -15,6 +15,22 @@ $(document).ready(function(){
 		}
 		
 	});
+	//delete 버튼
+	$(document).on("click","#deleteBtn",function(e){
+		var accountId = $('div[id=accountlist]>ul>li').attr('accountId');
+		var data={'accountId':accountId};
+		$.ajax({
+			url:"accountDelete.json",
+			type:"post",
+			data:JSON.stringify(data),
+			dataType:"json",
+			contentType:"application/json",
+			success:function(rslt){
+				alert(rslt+'건 삭제 되었습니다.');
+				showAccountList();
+			}		
+		});	
+	});
 });
 function showAccountList(){
 	$.ajax({
@@ -33,7 +49,8 @@ function showAccountList(){
 				+'<option value="minus">빼기</option>'
 				+'</select></p>'
 				+'<p>금액 : <input type="text" name="balance"/></p>'
-				+'<a href="#" id="updateBtn">업데이트하기</a>';
+				+'<a href="#" id="updateBtn">업데이트하기</a><br/>'
+				+'<a href="#" id="deleteBtn">삭제하기</a>'
 				+'</li>';
 			}
 			html+='</ul>';

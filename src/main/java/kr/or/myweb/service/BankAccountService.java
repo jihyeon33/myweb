@@ -12,4 +12,5 @@ public interface BankAccountService {
 	public BankAccountDto getAccountByAccountId(String accountId);
 	public void updateBalance(String option, String accountId, BigDecimal balance);
 	public Long registerAccount(BankAccountDto bankAccountDto);
+	public int deleteAccount(String accountId);
 }

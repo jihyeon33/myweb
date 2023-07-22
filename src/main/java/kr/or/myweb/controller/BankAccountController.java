@@ -104,4 +104,12 @@ public class BankAccountController {
     	System.out.println("빼기 연산후:"+balance);
     	return balance;
     }
+    @PostMapping(path="/bank/accountDelete.json")
+    @ResponseBody
+    public int accountDelete(@RequestBody BankAccountDto bankAccountDto) {
+    	String accountId=bankAccountDto.getAccountId();
+    	int cnt = bankAccountService.deleteAccount(accountId);
+    	return cnt;
+    	
+    }
 }

@@ -58,4 +58,9 @@ public class BankAccountServiceImpl implements BankAccountService {
 		Long id = bankAccountDao.insertBankAccount(bankAccountDto);
 		return id;
 	}
+	@Override
+	public int deleteAccount(String accountId) {
+		int cnt = bankAccountDao.deleteByAccountId(accountId);
+		return cnt;
+	};
 }
