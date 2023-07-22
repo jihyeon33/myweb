@@ -1,5 +1,6 @@
 package kr.or.myweb.dao;
 
+import java.math.BigDecimal;
 //import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -69,6 +70,13 @@ public class BankAccountDao {
 		Map<String,String> params = Collections.singletonMap("accountId", accountId);
 		BankAccountDto bankAccountDto = jdbc.queryForObject(SELECT_BY_ACCOUNT_ID, params, rowMapper);
 		return bankAccountDto;
+	}
+	public int updateBalance(String accountId, BigDecimal balance) {
+		Map<String,Object> params = new HashMap<>();
+		params.put("accountId", accountId);
+		params.put("balance", balance);
+		int cnt = jdbc.update(UPDATE_BY_ACCOUNT_ID, params);
+		return cnt;
 	}
 
 }

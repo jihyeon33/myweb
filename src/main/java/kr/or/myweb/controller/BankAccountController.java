@@ -95,18 +95,19 @@ public class BankAccountController {
     public BigDecimal balancePlus(@RequestBody BankAccountDto bankAccountDto) {
     	BigDecimal balance= bankAccountDto.getBalance();
     	String accountId = bankAccountDto.getAccountId();
-    	System.out.println("전송된:"+balance);
-    	System.out.println("전송된:"+accountId);
-    	BankAccountDto account = bankAccountService.getAccountByAccountId(accountId);
-    	BigDecimal balance2 = account.getBalance();
-    	System.out.println("디비호출후:"+balance2);
-    	balance = balance.add(balance2);
-    	System.out.println("연산후:"+balance);
+    	String option="plus";    	
+    	bankAccountService.updateBalance(option,accountId,balance);
+    	System.out.println("더하기 연산후:"+balance);
     	return balance;
     }
     @PostMapping(path="/bank/balanceMinus.json")
+    @ResponseBody
     public BigDecimal balanceMinus(@RequestBody BankAccountDto bankAccountDto) {
     	BigDecimal balance= bankAccountDto.getBalance();
+    	String accountId=bankAccountDto.getAccountId();
+    	String option="minus";  	
+    	bankAccountService.updateBalance(option, accountId, balance);
+    	System.out.println("빼기 연산후:"+balance);
     	return balance;
     }
 }

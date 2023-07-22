@@ -1,5 +1,6 @@
 package kr.or.myweb.service.impl;
 
+import java.math.BigDecimal;
 //import java.util.ArrayList;
 import java.util.List;
 
@@ -38,5 +39,18 @@ public class BankAccountServiceImpl implements BankAccountService {
 	public BankAccountDto getAccountByAccountId(String accountId) {
 		BankAccountDto account = bankAccountDao.selectByAccountId(accountId);
 		return account;
+	}
+	@Override
+	public void updateBalance(String option, String accountId, BigDecimal balance) {
+    	BankAccountDto account = bankAccountDao.selectByAccountId(accountId);
+    	BigDecimal nowBalance = account.getBalance();
+
+    	if(option=="plus") {  //더하기일경우
+    		nowBalance = nowBalance.add(balance);
+    	}else { //빼기일경우
+    		nowBalance = nowBalance.subtract(balance);
+    	}   	
+		bankAccountDao.updateBalance(accountId,nowBalance);
+		return;
 	}
 }
