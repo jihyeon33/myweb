@@ -34,4 +34,9 @@ public class BankAccountServiceImpl implements BankAccountService {
 		int cnt = bankAccountDao.selectCnt();
 		return cnt;
 	}
+	@Override
+	public BankAccountDto getAccountByAccountId(String accountId) {
+		BankAccountDto account = bankAccountDao.selectByAccountId(accountId);
+		return account;
+	}
 }

@@ -26,7 +26,7 @@
 			<li>보유 잔액은 총 x원 입니다.</li>
 		</ul>
 	</div>
-	<div>
+	<div id="accountlist">
 		<ul>
 			<c:forEach var="account" items="${accountlist }" varStatus="status">
 				<li>${status.count}. ${account.bankName}은행 (${account.accountId}) : ${account.balance} 원</li>

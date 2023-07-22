@@ -64,5 +64,11 @@ public class BankAccountDao {
 		String time = jdbc.queryForObject(SELECT_NOW_TIME, Collections.emptyMap(), String.class);
 		return time;
 	}
+	//selectByAccountId
+	public BankAccountDto selectByAccountId(String accountId) {
+		Map<String,String> params = Collections.singletonMap("accountId", accountId);
+		BankAccountDto bankAccountDto = jdbc.queryForObject(SELECT_BY_ACCOUNT_ID, params, rowMapper);
+		return bankAccountDto;
+	}
 
 }
