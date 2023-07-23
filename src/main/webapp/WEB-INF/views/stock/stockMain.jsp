@@ -7,11 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 스톡 메인 페이지입니다.
 xx님 반갑습니다.
+<div>
 xx님은 총 x개 종목을 보유하고 계십니다.
 총 매수금액: xx원
+</div>
 <div>
 	<ul>
 		<li> 애플 보유수량:xx 매수금액:xx</li>
@@ -21,12 +22,12 @@ xx님은 총 x개 종목을 보유하고 계십니다.
 </div>
 
 <div>
-추가 매수 하거나 매도한 사항이 있으십니까?<br/>
-등록하기 페이지에서 변경사항을 업데이트 해주세요.<br/>
+신규 매수하신 항목이 있으십니까?<br/>
+등록하기 페이지에서 신규항목을 등록해 주세요.<br/>
 <a href="stockRegister.do">등록하기</a>
 </div>
 
 
-
+<script src="../resources/static/js/stock/stockMain.js"></script>
 </body>
 </html>
