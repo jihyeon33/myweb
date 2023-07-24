@@ -1,14 +1,22 @@
 package kr.or.myweb.dao;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import kr.or.myweb.dto.StockDto;
+import static kr.or.myweb.dao.StockDaoSqls.*;
 
 @Repository
 public class StockDao {
@@ -21,11 +29,42 @@ public class StockDao {
 		this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("stock_holding").usingGeneratedKeyColumns("id");
 	}
 	//selectlist
+	public List<StockDto> getStockList(Integer start, Integer limit){
+		Map<String,Integer> params = new HashMap<>();
+		params.put("start",start);
+		params.put("limit",limit);
+		List<StockDto> stocklist = jdbc.query(SELECT_LIST, params,rowMapper);
+		return stocklist;
+	}
 	//selectCnt
+	public int selectStockCnt() {
+		int totalCnt = jdbc.queryForObject(SELECT_TOTAL_CNT,Collections.emptyMap(), Integer.class);
+		return totalCnt;
+	}
 	//selectOne
+	public StockDto selectStockOne(String item) {
+		Map<String,String> params = Collections.singletonMap("itme", item);
+		StockDto stock = jdbc.queryForObject(SELECT_ONE_BY_ITEM, params, rowMapper);
+		return null;
+	}
 	//insertOne
+	public Long insertStockOne(StockDto stockDto) {
+		SqlParameterSource params = new BeanPropertySqlParameterSource(stockDto);
+		Long cnt = insertAction.executeAndReturnKey(params).longValue();
+		return cnt;
+	}
 	//updateOne
+	public int updateStockOne(StockDto stocDto) {
+		Map<String,Object> params = new HashMap<>();
+		String item = stocDto.getItem();
+		params.put("item", item);
+		int cnt = jdbc.update(UPDATE_ONE_BY_ITEM, params);
+		return cnt;
+	}
 	//deleteOne
-
-
+	public int deleteStockOne(String item) {
+		Map<String,String> params= Collections.singletonMap("item", item);
+		int cnt = jdbc.update(DELETE_ONE_BY_ITEM, params);
+		return cnt;
+	}
 }
