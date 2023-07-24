@@ -13,7 +13,7 @@ xx님 반갑습니다.
 xx님은 총 x개 종목을 보유하고 계십니다.
 총 매수금액: xx원
 </div>
-<div>
+<div id="stocklist">
 	<ul>
 		<li> 애플 보유수량:xx 매수금액:xx</li>
 		<li> 테슬라 보유수량:xx 매수금액:xx</li>
@@ -27,7 +27,7 @@ xx님은 총 x개 종목을 보유하고 계십니다.
 <a href="stockRegister.do">등록하기</a>
 </div>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="../resources/static/js/stock/stockMain.js"></script>
 </body>
 </html>

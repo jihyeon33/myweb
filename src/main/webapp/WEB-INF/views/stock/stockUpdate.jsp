@@ -8,5 +8,7 @@
 </head>
 <body>
 stockUpdate 입니다.
+<a href="#" id="updateBtn">업데이트 하기</a>
+<script src="../resources/static/js/stock/stockUpdate.js"></script>
 </body>
 </html>

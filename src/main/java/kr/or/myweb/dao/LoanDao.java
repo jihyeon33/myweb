@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.myweb.dto.LoanDto;
 
-import static kr.or.myweb.dao.StockDaoSqls.*;
+import static kr.or.myweb.dao.LoanDaoSqls.*;
 
 @Repository
 public class LoanDao {

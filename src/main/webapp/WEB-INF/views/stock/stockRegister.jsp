@@ -8,5 +8,7 @@
 </head>
 <body>
 stockRegister 페이지 입니다.
+<a href="#" id="rgstrBtn">등록하기</a>
+<script src="../resources/static/js/stock/stockRegister.js"></script>
 </body>
 </html>

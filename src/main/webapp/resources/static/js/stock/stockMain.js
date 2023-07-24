@@ -23,6 +23,12 @@ function showList(){
 		contentType:"application/json",
 		success:function(rslt){
 			console.log(rslt);
+			html="<ul>";
+			for(var i=0; i<rslt.length; i++){
+				html+='<li>'+rslt[i].item+' 보유수량:'+rslt[i].rtnQnty+', 총 매수금액:'+rslt[i].prchsAmnt+'</li>';
+			}
+			html+='</ul>';
+			$("#stocklist").html(html);
 		}
 	});
 }
