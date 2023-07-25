@@ -2,12 +2,16 @@ package kr.or.myweb.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.myweb.dto.StockDto;
@@ -33,8 +37,13 @@ public class StockController {
 		return stocklist;
 	}
 	@DeleteMapping(path="/stock/stockDelete.json")
-	public int deleteStock() {
-		return 0;
+	@ResponseBody
+	public int deleteStock(@RequestBody StockDto stockDto) {
+		Long itemId = stockDto.getId();
+		System.out.println(itemId);
+		int cnt = stockService.deleteStock(itemId);
+		System.out.println(cnt);
+		return cnt;
 	}
 	@GetMapping(path="/stock/stockRegister.do")
 	public String doStockRegister() {
@@ -45,7 +54,10 @@ public class StockController {
 		return 0;
 	}
 	@GetMapping(path="/stock/stockUpdate.do")
-	public String doStockUpdate() {
+	public String doStockUpdate(@ModelAttribute StockDto stockDto) {
+		String item = stockDto.getItem();
+		System.out.println("요청들어옴");
+		System.out.println(item);
 		return "stock/stockUpdate";
 	}
 	@PutMapping(path="/stock/bought.json")

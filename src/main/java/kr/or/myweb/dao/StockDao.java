@@ -62,8 +62,8 @@ public class StockDao {
 		return cnt;
 	}
 	//deleteOne
-	public int deleteStockOne(String item) {
-		Map<String,String> params= Collections.singletonMap("item", item);
+	public int deleteStockOne(Long id) {
+		Map<String,Long> params= Collections.singletonMap("id", id);
 		int cnt = jdbc.update(DELETE_ONE_BY_ITEM, params);
 		return cnt;
 	}

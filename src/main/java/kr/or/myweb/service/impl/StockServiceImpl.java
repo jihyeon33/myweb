@@ -26,5 +26,10 @@ public class StockServiceImpl implements StockService {
 		List<StockDto> stocklist= stockDao.getStockList(start, limit);
 		return stocklist;
 	}
+	@Override
+	public int deleteStock(Long id) {
+		int cnt= stockDao.deleteStockOne(id);
+		return cnt;
+	}
 
 }

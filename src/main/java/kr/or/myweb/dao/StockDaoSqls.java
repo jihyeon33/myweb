@@ -10,6 +10,6 @@ public class StockDaoSqls {
 	//updateOne
 	public static final String UPDATE_ONE_BY_ITEM ="update stock_holding set rtn_qnty=:rtnQnty, prchs_amnt=:prchsAmnt, update_date =sysdate() where item=:item";
 	//deleteOne
-	public static final String DELETE_ONE_BY_ITEM ="delete from stock_holding where item=:item";
+	public static final String DELETE_ONE_BY_ITEM ="delete from stock_holding where id=:id";
 	
 }
