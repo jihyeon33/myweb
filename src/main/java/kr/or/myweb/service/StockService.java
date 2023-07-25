@@ -8,5 +8,6 @@ public interface StockService {
 	public int getTotalStockCnt();
 	public List<StockDto> getStockList(Integer start, Integer limit);
 	public int deleteStock(Long item);
+	public Long insertStock(StockDto stockDto);
 
 }

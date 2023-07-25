@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 public class StockDto {
 	private Long id;        //pk
-	private Long user_id;   //사용자 아이디
+	private Long userId;   //사용자 아이디
 	private String item;    //항목
 	private int rtnQnty;    //보유수량
 	private BigDecimal prchsAmnt;  //매수금액
@@ -17,11 +17,11 @@ public class StockDto {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getUser_id() {
-		return user_id;
+	public Long getUserId() {
+		return userId;
 	}
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 	public String getItem() {
 		return item;

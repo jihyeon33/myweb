@@ -31,5 +31,10 @@ public class StockServiceImpl implements StockService {
 		int cnt= stockDao.deleteStockOne(id);
 		return cnt;
 	}
+	@Override
+	public Long insertStock(StockDto stockDto) {
+		Long id = stockDao.insertStockOne(stockDto);
+		return id;
+	}
 
 }

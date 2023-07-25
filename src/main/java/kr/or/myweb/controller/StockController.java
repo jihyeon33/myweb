@@ -1,5 +1,6 @@
 package kr.or.myweb.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,8 +51,21 @@ public class StockController {
 		return "stock/stockRegister";
 	}
 	@PostMapping(path="/stock/stockRegister.json")
-	public int stockRegister() {
-		return 0;
+	@ResponseBody
+	public int stockRegister(@RequestBody StockDto stockDto) {
+		System.out.println("레지스터호출");
+		System.out.println(stockDto.getItem());
+		System.out.println(stockDto.getPrchsAmnt());
+		System.out.println(stockDto.getRtnQnty());
+		//총 매수금액 = 매수단가 x 매수량
+		BigDecimal prchsAmnt = stockDto.getPrchsAmnt();
+		int rtnQnty = stockDto.getRtnQnty();
+		prchsAmnt= prchsAmnt.multiply(new BigDecimal(rtnQnty));
+		
+		stockDto.setPrchsAmnt(prchsAmnt);
+		stockDto.setUserId(new Long(1));
+		Long id = stockService.insertStock(stockDto);
+		return 1;
 	}
 	@GetMapping(path="/stock/stockUpdate.do")
 	public String doStockUpdate(@ModelAttribute StockDto stockDto) {
