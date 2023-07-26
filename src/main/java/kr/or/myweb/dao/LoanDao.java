@@ -29,7 +29,7 @@ public class LoanDao {
 		this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("loan_amount").usingGeneratedKeyColumns("id");	
 	}	
 	//selectlist
-	public List<LoanDto> getStockList(Integer start, Integer limit){
+	public List<LoanDto> getLoanList(Integer start, Integer limit){
 		Map<String,Integer> params = new HashMap<>();
 		params.put("start",start);
 		params.put("limit",limit);
@@ -37,24 +37,24 @@ public class LoanDao {
 		return stocklist;
 	}
 	//selectCnt
-	public int selectStockCnt() {
+	public int selectLoanCnt() {
 		int totalCnt = jdbc.queryForObject(SELECT_TOTAL_CNT,Collections.emptyMap(), Integer.class);
 		return totalCnt;
 	}
 	//selectOne
-	public LoanDto selectStockOne(String lender) {
+	public LoanDto selectLoanOne(String lender) {
 		Map<String,String> params = Collections.singletonMap("lender", lender);
 		LoanDto stock = jdbc.queryForObject(SELECT_ONE_BY_ITEM, params, rowMapper);
 		return null;
 	}
 	//insertOne
-	public Long insertStockOne(LoanDto loanDto) {
+	public Long insertLoanOne(LoanDto loanDto) {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(loanDto);
 		Long cnt = insertAction.executeAndReturnKey(params).longValue();
 		return cnt;
 	}
 	//updateOne
-	public int updateStockOne(LoanDto loanDto) {
+	public int updateLoanOne(LoanDto loanDto) {
 		Map<String,Object> params = new HashMap<>();
 		String lender = loanDto.getLender();
 		params.put("lender", lender);
@@ -62,7 +62,7 @@ public class LoanDao {
 		return cnt;
 	}
 	//deleteOne
-	public int deleteStockOne(String lender) {
+	public int deleteLoanOne(String lender) {
 		Map<String,String> params= Collections.singletonMap("lender", lender);
 		int cnt = jdbc.update(DELETE_ONE_BY_ITEM, params);
 		return cnt;
