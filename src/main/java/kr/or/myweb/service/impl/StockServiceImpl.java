@@ -18,12 +18,12 @@ public class StockServiceImpl implements StockService {
 	}
 	@Override
 	public int getTotalStockCnt() {
-		int totalCnt = stockDao.selectStockCnt();
+		int totalCnt = stockDao.selectStockTotalCnt();
 		return totalCnt;
 	}
 	@Override
 	public List<StockDto> getStockList(Integer start, Integer limit) {
-		List<StockDto> stocklist= stockDao.getStockList(start, limit);
+		List<StockDto> stocklist= stockDao.selectStockList(start, limit);
 		return stocklist;
 	}
 	@Override
@@ -32,7 +32,7 @@ public class StockServiceImpl implements StockService {
 		return cnt;
 	}
 	@Override
-	public Long insertStock(StockDto stockDto) {
+	public Long registerStock(StockDto stockDto) {
 		Long id = stockDao.insertStockOne(stockDto);
 		return id;
 	}

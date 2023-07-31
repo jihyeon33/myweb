@@ -38,6 +38,12 @@ public class BankAccountDao {
 		List<BankAccountDto> accounts = jdbc.query(SELECT_ALL, params, rowMapper);
 		return accounts;
 	}
+	//selectByAccountId
+	public BankAccountDto selectByAccountId(String accountId) {
+		Map<String,String> params = Collections.singletonMap("accountId", accountId);
+		BankAccountDto bankAccountDto = jdbc.queryForObject(SELECT_BY_ACCOUNT_ID, params, rowMapper);
+		return bankAccountDto;
+	}
 	//insert
 	public Long insertBankAccount(BankAccountDto bankAccountDto) {
 		Long id ;
@@ -53,11 +59,17 @@ public class BankAccountDao {
 		return cnt;
 	}
 	//update
-	
+	public int updateBalance(String accountId, BigDecimal balance) {
+		Map<String,Object> params = new HashMap<>();
+		params.put("accountId", accountId);
+		params.put("balance", balance);
+		int cnt = jdbc.update(UPDATE_BY_ACCOUNT_ID, params);
+		return cnt;
+	}	
 	//selectCnt
-	public int selectCnt() {
+	public int selectTotalCnt() {
 		int cnt =0;
-		cnt = jdbc.queryForObject(SELECT_COUNT, Collections.emptyMap(), Integer.class);
+		cnt = jdbc.queryForObject(SELECT_TOTAL_COUNT, Collections.emptyMap(), Integer.class);
 		return cnt;
 	}
 	//selectNowTime
@@ -65,18 +77,6 @@ public class BankAccountDao {
 		String time = jdbc.queryForObject(SELECT_NOW_TIME, Collections.emptyMap(), String.class);
 		return time;
 	}
-	//selectByAccountId
-	public BankAccountDto selectByAccountId(String accountId) {
-		Map<String,String> params = Collections.singletonMap("accountId", accountId);
-		BankAccountDto bankAccountDto = jdbc.queryForObject(SELECT_BY_ACCOUNT_ID, params, rowMapper);
-		return bankAccountDto;
-	}
-	public int updateBalance(String accountId, BigDecimal balance) {
-		Map<String,Object> params = new HashMap<>();
-		params.put("accountId", accountId);
-		params.put("balance", balance);
-		int cnt = jdbc.update(UPDATE_BY_ACCOUNT_ID, params);
-		return cnt;
-	}
+
 
 }

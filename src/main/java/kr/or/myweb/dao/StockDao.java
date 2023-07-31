@@ -29,7 +29,7 @@ public class StockDao {
 		this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("stock_holding").usingGeneratedKeyColumns("id");
 	}
 	//selectlist
-	public List<StockDto> getStockList(Integer start, Integer limit){
+	public List<StockDto> selectStockList(Integer start, Integer limit){
 		Map<String,Integer> params = new HashMap<>();
 		params.put("start",start);
 		params.put("limit",limit);
@@ -37,7 +37,7 @@ public class StockDao {
 		return stocklist;
 	}
 	//selectCnt
-	public int selectStockCnt() {
+	public int selectStockTotalCnt() {
 		int totalCnt = jdbc.queryForObject(SELECT_TOTAL_CNT,Collections.emptyMap(), Integer.class);
 		return totalCnt;
 	}
@@ -45,7 +45,7 @@ public class StockDao {
 	public StockDto selectStockOne(String item) {
 		Map<String,String> params = Collections.singletonMap("itme", item);
 		StockDto stock = jdbc.queryForObject(SELECT_ONE_BY_ITEM, params, rowMapper);
-		return null;
+		return stock;
 	}
 	//insertOne
 	public Long insertStockOne(StockDto stockDto) {

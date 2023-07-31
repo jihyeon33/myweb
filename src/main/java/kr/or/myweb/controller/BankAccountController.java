@@ -56,7 +56,6 @@ public class BankAccountController {
 		String userName=loginDto.getUserId();
 		model.addAttribute("time", time);
 		model.addAttribute("userName", userName);
-        //String myname= httpSession.getAttribute("loginDto");
 		
 		//총 계좌 수
 		int totalCnt= bankAccountService.getAccountsTotalCnt();
@@ -73,40 +72,38 @@ public class BankAccountController {
     }
     @GetMapping(path="/bank/accountlist.json")
     @ResponseBody
-    public List<BankAccountDto> getAccountlist(){
+    public List<BankAccountDto> jsonGetAccountlist(){
     	int totalAccountsCnt= bankAccountService.getAccountsTotalCnt();
     	List<BankAccountDto> accountlist= bankAccountService.getAccountList(0, totalAccountsCnt);
     	return accountlist;
     }
     @PostMapping(path="/bank/accountRegister.json")
-    public String doAccountRegister(BankAccountDto bankAccountDto){
+    public String jsonAccountRegister(BankAccountDto bankAccountDto){
     	bankAccountService.registerAccount(bankAccountDto);
     	return "bank/bankMain";
     }
 
     @PostMapping(path="/bank/balancePlus.json")
     @ResponseBody
-    public BigDecimal balancePlus(@RequestBody BankAccountDto bankAccountDto) {
+    public BigDecimal jsonBalancePlus(@RequestBody BankAccountDto bankAccountDto) {
     	BigDecimal balance= bankAccountDto.getBalance();
     	String accountId = bankAccountDto.getAccountId();
     	String option="plus";    	
     	bankAccountService.updateBalance(option,accountId,balance);
-    	System.out.println("더하기 연산후:"+balance);
     	return balance;
     }
     @PostMapping(path="/bank/balanceMinus.json")
     @ResponseBody
-    public BigDecimal balanceMinus(@RequestBody BankAccountDto bankAccountDto) {
+    public BigDecimal jsonBalanceMinus(@RequestBody BankAccountDto bankAccountDto) {
     	BigDecimal balance= bankAccountDto.getBalance();
     	String accountId=bankAccountDto.getAccountId();
     	String option="minus";  	
     	bankAccountService.updateBalance(option, accountId, balance);
-    	System.out.println("빼기 연산후:"+balance);
     	return balance;
     }
     @PostMapping(path="/bank/accountDelete.json")
     @ResponseBody
-    public int accountDelete(@RequestBody BankAccountDto bankAccountDto) {
+    public int jsonAccountDelete(@RequestBody BankAccountDto bankAccountDto) {
     	String accountId=bankAccountDto.getAccountId();
     	int cnt = bankAccountService.deleteAccount(accountId);
     	return cnt;

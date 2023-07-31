@@ -29,7 +29,7 @@ public class LoanDao {
 		this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("loan_amount").usingGeneratedKeyColumns("id");	
 	}	
 	//selectlist
-	public List<LoanDto> getLoanList(Integer start, Integer limit){
+	public List<LoanDto> selectLoanList(Integer start, Integer limit){
 		Map<String,Integer> params = new HashMap<>();
 		params.put("start",start);
 		params.put("limit",limit);
@@ -37,7 +37,7 @@ public class LoanDao {
 		return stocklist;
 	}
 	//selectCnt
-	public int selectLoanCnt() {
+	public int selectLoanTotalCnt() {
 		int totalCnt = jdbc.queryForObject(SELECT_TOTAL_CNT,Collections.emptyMap(), Integer.class);
 		return totalCnt;
 	}
@@ -45,7 +45,7 @@ public class LoanDao {
 	public LoanDto selectLoanOne(String lender) {
 		Map<String,String> params = Collections.singletonMap("lender", lender);
 		LoanDto stock = jdbc.queryForObject(SELECT_ONE_BY_ITEM, params, rowMapper);
-		return null;
+		return stock;
 	}
 	//insertOne
 	public Long insertLoanOne(LoanDto loanDto) {

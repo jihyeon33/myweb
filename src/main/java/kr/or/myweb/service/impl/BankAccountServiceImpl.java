@@ -32,7 +32,7 @@ public class BankAccountServiceImpl implements BankAccountService {
 	}
 	@Override
 	public int getAccountsTotalCnt() {
-		int cnt = bankAccountDao.selectCnt();
+		int cnt = bankAccountDao.selectTotalCnt();
 		return cnt;
 	}
 	@Override

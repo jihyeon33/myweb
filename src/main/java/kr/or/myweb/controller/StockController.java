@@ -30,18 +30,16 @@ public class StockController {
 	}
 	@GetMapping(path="/stock/stockList.json")
 	@ResponseBody
-	public List<StockDto> getStockList(){
+	public List<StockDto> jsonGetStockList(){
 		int totalCnt = stockService.getTotalStockCnt();
 		List<StockDto> stocklist = stockService.getStockList(0, totalCnt);
 		return stocklist;
 	}
 	@DeleteMapping(path="/stock/stockDelete.json")
 	@ResponseBody
-	public int deleteStock(@RequestBody StockDto stockDto) {
+	public int jsonDeleteStock(@RequestBody StockDto stockDto) {
 		Long itemId = stockDto.getId();
-		System.out.println(itemId);
 		int cnt = stockService.deleteStock(itemId);
-		System.out.println(cnt);
 		return cnt;
 	}
 	@GetMapping(path="/stock/stockRegister.do")
@@ -50,11 +48,7 @@ public class StockController {
 	}
 	@PostMapping(path="/stock/stockRegister.json")
 	@ResponseBody
-	public int stockRegister(@RequestBody StockDto stockDto) {
-		System.out.println("레지스터호출");
-		System.out.println(stockDto.getItem());
-		System.out.println(stockDto.getPrchsAmnt());
-		System.out.println(stockDto.getRtnQnty());
+	public int jsonStockRegister(@RequestBody StockDto stockDto) {
 		//총 매수금액 = 매수단가 x 매수량
 		BigDecimal prchsAmnt = stockDto.getPrchsAmnt();
 		int rtnQnty = stockDto.getRtnQnty();
@@ -62,22 +56,21 @@ public class StockController {
 		
 		stockDto.setPrchsAmnt(prchsAmnt);
 		stockDto.setUserId(new Long(1));
-		Long id = stockService.insertStock(stockDto);
+		Long id = stockService.registerStock(stockDto);
 		return 1;
 	}
 	@GetMapping(path="/stock/stockUpdate.do")
 	public String doStockUpdate(@ModelAttribute StockDto stockDto) {
 		String item = stockDto.getItem();
-		System.out.println("요청들어옴");
 		System.out.println(item);
 		return "stock/stockUpdate";
 	}
 	@PutMapping(path="/stock/bought.json")
-	public int stockBought() {
+	public int jsonStockBought() {
 		return 0;
 	}
 	@PutMapping(path="/stock/sold.json")
-	public int stockSold() {
+	public int jsonStockSold() {
 		return 0;
 	}
 

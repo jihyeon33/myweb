@@ -17,12 +17,12 @@ public class LoanServiceImpl implements LoanService {
 	}
 	@Override
 	public int getLoanTotalCnt() {
-		int totalCnt = loanDao.selectLoanCnt();
+		int totalCnt = loanDao.selectLoanTotalCnt();
 		return totalCnt;
 	}
 	@Override
 	public List<LoanDto> getLoanList(Integer start, Integer limit) {
-		List<LoanDto> loanlist = loanDao.getLoanList(start, limit);
+		List<LoanDto> loanlist = loanDao.selectLoanList(start, limit);
 		return loanlist;
 	}
 
