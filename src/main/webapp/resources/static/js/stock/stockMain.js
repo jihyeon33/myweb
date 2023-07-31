@@ -5,7 +5,7 @@ $(document).ready(function(){
 	showList();
 	$(document).on("click","#deleteBtn",function(e){
 		if(confirm("삭제 하시겠습니까?")){
-			deleteOne();
+			deleteOne(e);
 		}
 	});
 	$(document).on("click","#updateBtn",function(e){
@@ -21,19 +21,27 @@ function showList(){
 		contentType:"application/json",
 		success:function(rslt){
 			console.log(rslt);
-			html="<ul>";
+			var html='';
 			for(var i=0; i<rslt.length; i++){
-				html+='<li itemId='+rslt[i].id+'>'+rslt[i].item+' 보유수량:'+rslt[i].rtnQnty+', 총 매수금액:'+rslt[i].prchsAmnt
-				+'<a href="http://localhost:8080/myweb/stock/stockUpdate.do?id='+rslt[i].id+'" id="updateBtn">업데이트하기</a><a href="#" id="deleteBtn">삭제하기</a></li>';
+				html
+				+='<tr>'
+				+'<th scope="row">'+rslt[i].item+'</th>'
+				+'<td>'+rslt[i].rtnQnty+'</td>'
+				+'<td>'+rslt[i].prchsAmnt+'</td>'
+				+'<td>'
+				+'<a href="http://localhost:8080/myweb/stock/stockUpdate.do?id='+rslt[i].id+'" id="updateBtn">업데이트하기</a>'
+				+'<a href="#" id="deleteBtn" itemId='+rslt[i].id+'>삭제하기</a>'
+				+'</td>'
+				+'</tr>';
 			}
-			html+='</ul>';
-			$("#stocklist").html(html);
+			$("#stocklist > table> tbody").html(html);
 		}
 	});
 }
-function deleteOne(){
+function deleteOne(e){
+	var target= e.currentTarget;
 	//ajax호출
-	var id = $('div[id=stocklist]>ul>li').attr('itemId');
+	var id = target.getAttribute('itemId');
 	var data={'id': id };
 	$.ajax({
 		url:"stockDelete.json",

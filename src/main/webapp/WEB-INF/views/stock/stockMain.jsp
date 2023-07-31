@@ -9,7 +9,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
-스톡 메인 페이지입니다.
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     ${userName}님 반갑습니다.
@@ -20,22 +19,34 @@
   </ul>
 </div>
 
-<div>
+<div class="alert alert-info" role="alert">
 xx님은 총 x개 종목을 보유하고 계십니다.
 총 매수금액: xx원
 </div>
+
 <div id="stocklist">
-	<ul>
-		<li> 애플 보유수량:xx 매수금액:xx</li>
-		<li> 테슬라 보유수량:xx 매수금액:xx</li>
-		<li> ARKK ETF 보유수량:xx 매수금액:xx</li>
-	</ul>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">항목</th>
+	      		<th scope="col">보유수량</th>
+	      		<th scope="col">총 매수금액</th>
+	      		<th scope="col"></th>
+	    	</tr>
+	  	</thead>
+	  	<tbody>
+	  	</tbody>
+	</table>
 </div>
 
-<div>
-신규 매수하신 항목이 있으십니까?<br/>
-등록하기 페이지에서 신규항목을 등록해 주세요.<br/>
-<a href="stockRegister.do">등록하기</a>
+<div class="card w-75">
+  <div class="card-body">
+    <p class="card-text">
+    신규 매수하신 항목이 있으십니까?<br/>
+    등록하기 페이지에서 신규항목을 등록해 주세요.<br/>
+    </p>
+    <a href="stockRegister.do" class="btn btn-primary">등록하기</a>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

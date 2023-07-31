@@ -17,7 +17,7 @@ $(document).ready(function(){
 	});
 	//delete 버튼
 	$(document).on("click","#deleteBtn",function(e){
-		var accountId = $('div[id=accountlist]>ul>li').attr('accountId');
+		var accountId = $('div[id=accountlist]>div').attr('accountId');
 		var data={'accountId':accountId};
 		$.ajax({
 			url:"accountDelete.json",
@@ -41,25 +41,35 @@ function showAccountList(){
 			console.log(rslt);
 			
 			//html  그리기
-			var html ='<ul>';			
+			var html ='';		
 			for(var i=0; i<rslt.length;i++){
-				html+='<li accountId='+rslt[i].accountId+'>'+rslt[i].bankName+'은행 ('+rslt[i].accountId+') : '+rslt[i].balance+' 원'
-				+'<p> <select name="updateOption">'
-				+'<option value="plus">더하기</option>'
-				+'<option value="minus">빼기</option>'
-				+'</select></p>'
-				+'<p>금액 : <input type="text" name="balance"/></p>'
-				+'<a href="#" id="updateBtn">업데이트하기</a><br/>'
-				+'<a href="#" id="deleteBtn">삭제하기</a>'
-				+'</li>';
+				html
+				+='<div class="card" style="width: 24rem;" accountId='+rslt[i].accountId+'>'
+				+	'<div class="card-header">'+rslt[i].bankName+'은행 ('+rslt[i].accountId+') : '+rslt[i].balance+'원'+'</div>'
+				+	'<ul class="list-group list-group-flush">'
+				+		'<li class="list-group-item">'
+				+			'<p>'
+				+				'<select name="updateOption">'
+				+					'<option value="plus">더하기</option>'
+				+					'<option value="minus">빼기</option>'
+				+				'</select>'
+				+			'</p>'
+				+			'<p>금액 : <input type="text" name="balance"/></p>'
+				+			'<a href="#" id="updateBtn">업데이트하기</a><br/>'
+				+		'</li>'
+				+		'<li class="list-group-item">'
+				+			'<a href="#" id="deleteBtn">삭제하기</a>'
+				+		'</li>'
+				+	'</ul>'
+				+'</div>';
 			}
-			html+='</ul>';
+			
 			$('#accountlist').html(html);
 		}
 	})
 }
 function balancePlus(){
-	var accountId = $('div[id=accountlist]>ul>li').attr('accountId');
+	var accountId = $('div[id=accountlist]>div').attr('accountId');
 	var balance = $("input[name=balance]").val();
 	var data ={
 		'balance': balance,
@@ -80,7 +90,7 @@ function balancePlus(){
 	
 }
 function balanceMinus(){
-	var accountId = $('div[id=accountlist]>ul>li').attr('accountId');
+	var accountId = $('div[id=accountlist]>div').attr('accountId');
 	var balance = $("input[name=balance]").val();
 	var data ={
 		'balance': balance,

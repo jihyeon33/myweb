@@ -22,29 +22,31 @@
 	</div>
 	<h5>접속하신 현재 시간은 ${time} 입니다.</h5>
 	<h5>어떤 서비스를 이용하고 싶으신가요?</h5>
-	<div class="card" style="width: 18rem;">
-	  <img src="resources/static/img/saamee.jpg" class="card-img-top" alt="...">
-	  <div class="card-body">
-	    <h5 class="card-title">Bank</h5>
-	    <p class="card-text">manage your bank accounts.</p>
-	    <a href="bank/bankMain.do" class="btn btn-primary">bank 서비스 이용하기</a>
-	  </div>
-	</div>
-	<div class="card" style="width: 18rem;">
-	  <img src="resources/static/img/saamee.jpg" class="card-img-top" alt="...">
-	  <div class="card-body">
-	    <h5 class="card-title">Stock</h5>
-	    <p class="card-text">manage your stock accounts.</p>
-	    <a href="stock/stockMain.do" class="btn btn-primary">stock 서비스 이용하기</a>
-	  </div>
-	</div>
-	<div class="card" style="width: 18rem;">
-	  <img src="resources/static/img/saamee.jpg" class="card-img-top" alt="...">
-	  <div class="card-body">
-	    <h5 class="card-title">Loan</h5>
-	    <p class="card-text">manage your loan amounts.</p>
-	    <a href="loan/loanMain.do" class="btn btn-primary">loan 서비스 이용하기</a>
-	  </div>
+	<div class="row">
+		<div class="card" style="width: 18rem;">
+		  <img src="resources/static/img/bank.jpeg" class="card-img-top" alt="...">
+		  <div class="card-body">
+		    <h5 class="card-title">Bank</h5>
+		    <p class="card-text">manage your bank accounts.</p>
+		    <a href="bank/bankMain.do" class="btn btn-primary">bank 서비스 이용하기</a>
+		  </div>
+		</div>
+		<div class="card" style="width: 18rem;">
+		  <img src="resources/static/img/stock.jpeg" class="card-img-top" alt="...">
+		  <div class="card-body">
+		    <h5 class="card-title">Stock</h5>
+		    <p class="card-text">manage your stock accounts.</p>
+		    <a href="stock/stockMain.do" class="btn btn-primary">stock 서비스 이용하기</a>
+		  </div>
+		</div>
+		<div class="card" style="width: 18rem;">
+		  <img src="resources/static/img/loan.png" class="card-img-top" alt="...">
+		  <div class="card-body">
+		    <h5 class="card-title">Loan</h5>
+		    <p class="card-text">manage your loan amounts.</p>
+		    <a href="loan/loanMain.do" class="btn btn-primary">loan 서비스 이용하기</a>
+		  </div>
+		</div>
 	</div>
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
