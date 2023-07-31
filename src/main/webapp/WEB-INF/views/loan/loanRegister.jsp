@@ -19,7 +19,7 @@
 	  </ul>
 	</div>
 	
-	<div>
+	<div class="p-3 mb-2 bg-info text-dark bg-opacity-50">
 		대출하신 정보를 입력해 주세요.
 		<p><input type="text" name="lender" value="대출처"/></p>
 		<p><input type="text" name="lender" value="대출금"/></p>

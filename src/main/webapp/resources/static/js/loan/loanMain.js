@@ -3,8 +3,8 @@
  */
 $(document).ready(function(){
 	showLoanList();
-	$(document).on("click","#id",function(e){
-		
+	$(document).on("click","#updateBtn",function(e){
+		location.href = "loanUpdate.do";		
 	});
 })
 function showLoanList(){
@@ -14,9 +14,12 @@ function showLoanList(){
 		contentTyp:"application/json",
 		success:function(rslt){
 			console.log(rslt);
-			var html="<ul>";
+			var html='<ul class="list-group">';
 			for(var i=0;i<rslt.length;i++){
-				html+="<li>"+i+1+"."+rslt[i].lender+" 대출금: "+rslt[i].amount+" 상환예정일: "+rslt[i].repayDate+" <a href='loanUpdate.do'>업데이트하기</a></li>";
+				html+='<li class="list-group-item">'
+				+'<input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="'+i+1+'Radio" checked>'
+				+'<label class="form-check-label" for="'+i+1+'Radio">'+rslt[i].lender+" 대출금: "+rslt[i].amount+" 상환예정일: "+rslt[i].repayDate+'</label>'
+				+'</li>';
 			}
 			html+="</ul>";
 			$("#loanlist").html(html);

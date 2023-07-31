@@ -9,7 +9,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
-	loanMain 입니다.
 	<div class="dropdown">
 	  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 	    ${userName}님 반갑습니다.
@@ -20,10 +19,13 @@
 	  </ul>
 	</div>
 	
-	<div>xx님이 갚아야 할 총 대출잔액은 xx입니다.</div>
-	<div id = "loanlist">
+	<div class="alert alert-info" role="alert">
+		xx님이 갚아야 할 총 대출잔액은 xx입니다.
 	</div>
-	<div>
+	<div id = "loanlist"></div>
+	<button id='updateBtn' type='button' class='btn btn-success'>업데이트하기</button>
+
+	<div class="p-3 mb-2 bg-warning text-dark bg-opacity-50">
 		신규로 대출하신 내역이 있으십니까? 추가 등록 페이지에서 변경사항을 등록해주세요.
 		<a href="loanRegister.do">등록하기</a>
 	</div>

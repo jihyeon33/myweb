@@ -9,7 +9,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
-stockRegister 페이지 입니다.
 	<div class="dropdown">
 	  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 	    ${userName}님 반갑습니다.
@@ -20,7 +19,7 @@ stockRegister 페이지 입니다.
 	  </ul>
 	</div>
 	
-	<div>
+	<div class="p-3 mb-2 bg-info text-dark bg-opacity-50">
 		매수 정보를 입력해 주세요. (매수 단가에는 1개 가격을 입력하심 됩니다.)
 		<p>매수 항목 : <input type="text" name="item" value="예시) 넷플릭스"/></p>
 		<p>매수 단가 : <input type="text" name="amount" value="예시) 120000"/>원</p>
