@@ -42,8 +42,8 @@
 				</select>
 			</p>
 			<p>계좌 번호 : <input type="text" name="accountId"/></p>
-			<p>잔액 : <input type="text" name="balance"/></p>
-			<input type="submit" value="등록하기"/>
+			<p>잔액 : <input type="text" name="balance" value="예) 510000"/></p>
+			<input type="submit" value="등록하기" id="registerBtn"/>
 		</form>
 	</div>
 
