@@ -1,5 +1,7 @@
 console.log("bankMain.js파일입니다.");
 $(document).ready(function(){
+	jsonTest();
+	jsonTest2();
 	showAccountList();
 	//update 버튼
 	$(document).on("click","#updateBtn",function(e){
@@ -58,6 +60,26 @@ $(document).ready(function(){
 		});
 	});
 });
+function jsonTest(){
+	$.ajax({
+		url:"jsonViewTEST.json",
+		type:"get",
+		contentType:"application/json",
+		success:function(rslt){
+			console.log(rslt);
+		}
+	})	
+}
+function jsonTest2(){
+	$.ajax({
+		url:"jsonViewTEST2.json",
+		type:"get",
+		contentType:"application/json",
+		success:function(rslt){
+			console.log(rslt);
+		}
+	})	
+}
 function showAccountList(){
 	$.ajax({
 		url:"accountlist.json",

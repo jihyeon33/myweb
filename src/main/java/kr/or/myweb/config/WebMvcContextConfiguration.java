@@ -8,7 +8,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.BeanNameViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 @Configuration
 @EnableWebMvc
@@ -34,7 +36,17 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 		System.out.println("addViewControllers가 호출됩니다. ");
         registry.addViewController("/").setViewName("index");
 	}
-
+	
+	@Bean
+	public MappingJackson2JsonView jsonView() {
+		MappingJackson2JsonView jsonview = new MappingJackson2JsonView();
+		jsonview.setContentType("application/json;charset=UTF-8");
+		return jsonview;
+	}
+	@Bean
+    public BeanNameViewResolver beanNameResolver() {
+        return new BeanNameViewResolver();
+    }
 	@Bean
 	public InternalResourceViewResolver getInternalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -42,5 +54,4 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
-
 }

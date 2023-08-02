@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.myweb.dto.BankAccountDto;
@@ -45,6 +46,23 @@ public class BankAccountController {
     	List<BankAccountDto> list = bankAccountService.getAccountList(0, 2);
         
         return list;
+    }
+    @GetMapping(path="/bank/jsonViewTEST.json")
+    public ModelAndView jsonViewTEST(){
+    	System.out.println("jsonViewTEST 들어옴");
+    	ModelAndView mv = new ModelAndView("jsonView");
+    	int totalAccountsCnt= bankAccountService.getAccountsTotalCnt();
+    	List<BankAccountDto> accountlist= bankAccountService.getAccountList(0, totalAccountsCnt); 
+        mv.addObject("accountlist",accountlist);
+        return mv;
+    }
+    @GetMapping(path="/bank/jsonViewTEST2.json")
+    public String jsonViewTEST2(ModelMap model){
+    	System.out.println("jsonViewTEST2 들어옴");
+    	int totalAccountsCnt= bankAccountService.getAccountsTotalCnt();
+    	List<BankAccountDto> accountlist= bankAccountService.getAccountList(0, totalAccountsCnt);  
+    	model.addAttribute("accountlist", accountlist);
+    	return "jsonView";
     }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////    

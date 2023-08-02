@@ -20,8 +20,8 @@
 	  </ul>
 	</div>
 	<div class="alert alert-info" role="alert">
-		${userName}님이 보유하신 계좌는 총 ${totalCnt}개 입니다. <br/>
-		보유 잔액은 총 ${totalBalance}원 입니다.
+		${userName}님이 보유하신 계좌는 총 <span id="totalCnt">${totalCnt}</span>개 입니다. <br/>
+		보유 잔액은 총 <span id="totalBalance">${totalBalance}</span>원 입니다.
 	</div>
 	
 	<div id="accountlist"></div>
