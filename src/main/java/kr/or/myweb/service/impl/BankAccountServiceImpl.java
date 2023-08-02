@@ -62,5 +62,29 @@ public class BankAccountServiceImpl implements BankAccountService {
 	public int deleteAccount(String accountId) {
 		int cnt = bankAccountDao.deleteByAccountId(accountId);
 		return cnt;
+	}
+	@Override
+	public BigDecimal getTotalAccountsBalance() {
+		int totalcnt = bankAccountDao.selectTotalCnt();
+		List<BankAccountDto> totalaccountList = bankAccountDao.selectBankAccounts(0, totalcnt);
+		BigDecimal totalBalance = new BigDecimal(0);
+		for(BankAccountDto dto: totalaccountList) {
+			totalBalance = totalBalance.add(dto.getBalance());
+		}
+		return totalBalance;
+	}
+	@Override
+	public int isExistenceAccount(String accountId) {
+		int flag =0;
+		int totalcnt = bankAccountDao.selectTotalCnt();
+		List<BankAccountDto> totalaccountList = bankAccountDao.selectBankAccounts(0, totalcnt);
+
+		for(BankAccountDto dto: totalaccountList) {
+			if(accountId.equals(dto.getAccountId())) {
+				flag =1;
+				break;
+			}
+		}
+		return flag;
 	};
 }

@@ -3,8 +3,11 @@ package kr.or.myweb.controller;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.or.myweb.dto.LoginDto;
 import kr.or.myweb.dto.StockDto;
 import kr.or.myweb.service.StockService;
 
@@ -25,15 +29,21 @@ public class StockController {
 		this.stockService = stockService;
 	}
 	@GetMapping(path="/stock/stockMain.do")
-	public String doStockMain() {
+	public String doStockMain(HttpSession httpSession, Model model) {
+		LoginDto loginDto= (LoginDto) httpSession.getAttribute("loginDto");
+		String userName=loginDto.getUserId();
+		model.addAttribute("userName", userName);
 		return "stock/stockMain";
 	}
 	@GetMapping(path="/stock/stockList.json")
-	@ResponseBody
-	public List<StockDto> jsonGetStockList(){
+	public String jsonGetStockList(Model model){
 		int totalCnt = stockService.getTotalStockCnt();
 		List<StockDto> stocklist = stockService.getStockList(0, totalCnt);
-		return stocklist;
+		BigDecimal totalAmount = stockService.getTotalAmount();
+		model.addAttribute("totalCnt", totalCnt);
+		model.addAttribute("stocklist", stocklist);
+		model.addAttribute("totalAmount", totalAmount);
+		return "jsonView";
 	}
 	@DeleteMapping(path="/stock/stockDelete.json")
 	@ResponseBody
@@ -62,6 +72,7 @@ public class StockController {
 	@GetMapping(path="/stock/stockUpdate.do")
 	public String doStockUpdate(@ModelAttribute StockDto stockDto) {
 		String item = stockDto.getItem();
+		System.out.println("stockUpdate들어옴");
 		System.out.println(item);
 		return "stock/stockUpdate";
 	}

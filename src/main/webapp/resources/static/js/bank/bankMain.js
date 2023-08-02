@@ -1,7 +1,5 @@
 console.log("bankMain.js파일입니다.");
 $(document).ready(function(){
-	jsonTest();
-	jsonTest2();
 	showAccountList();
 	//update 버튼
 	$(document).on("click","#updateBtn",function(e){
@@ -41,45 +39,31 @@ $(document).ready(function(){
 	});
 	//register 버튼
 	$(document).on("click","#registerBtn",function(e){
+		var accountId=e.target.parentElement.children[1].children[0].value;
+
+		var data ={'accountId':accountId};
+		
 		//계좌번호 동일여부 유효성 체크
-		confirm("취소");
 		$.ajax({
 			url:"accountCheck.json",
-			type:"get",
-			data:"",
+			type:"post",
+			data:JSON.stringify(data),
 			dataType:"json",
 			contentType:"application/json",
 			success:function(rslt){
-				if(rslt==1){ //1:있음
+				if(rslt.flag==1){ //1:있음
 					alert("이미 등록되어있는 계좌번호 입니다. 다른 계좌번호를 입력해 주세요.");
 				}else{ //0:없음
 					alert("등록 가능한 계좌정보 입니다. 감사합니다.");
+					registerAccount(e);
+					
 				}
 				
 			}
 		});
 	});
 });
-function jsonTest(){
-	$.ajax({
-		url:"jsonViewTEST.json",
-		type:"get",
-		contentType:"application/json",
-		success:function(rslt){
-			console.log(rslt);
-		}
-	})	
-}
-function jsonTest2(){
-	$.ajax({
-		url:"jsonViewTEST2.json",
-		type:"get",
-		contentType:"application/json",
-		success:function(rslt){
-			console.log(rslt);
-		}
-	})	
-}
+
 function showAccountList(){
 	$.ajax({
 		url:"accountlist.json",
@@ -88,12 +72,15 @@ function showAccountList(){
 		success:function(rslt){
 			console.log(rslt);
 			
+			$('#totalCnt').text(rslt.totalAccountsCnt);
+			$('#totalBalance').text(rslt.totalAccountsBalance);
+			var accountlist= rslt.accountlist;
 			//html  그리기
 			var html ='';		
-			for(var i=0; i<rslt.length;i++){
+			for(var i=0; i<accountlist.length;i++){
 				html
-				+='<div class="card" style="width: 24rem;" accountId='+rslt[i].accountId+'>'
-				+	'<div class="card-header">'+rslt[i].bankName+'은행 ('+rslt[i].accountId+') : '+rslt[i].balance+'원'+'</div>'
+				+='<div class="card" style="width: 24rem;" accountId='+accountlist[i].accountId+'>'
+				+	'<div class="card-header">'+accountlist[i].bankName+'은행 ('+accountlist[i].accountId+') : '+accountlist[i].balance+'원'+'</div>'
 				+	'<ul class="list-group list-group-flush">'
 				+		'<li class="list-group-item">'
 				+			'<p>'
@@ -102,7 +89,7 @@ function showAccountList(){
 				+					'<option value="minus">빼기</option>'
 				+				'</select>'
 				+			'</p>'
-				+			'<p>금액 : <input type="text" name="balance" value="예) 510000"/></p>'
+				+			'<p>금액 : <input type="text" name="balance" value="예) 1000"/></p>'
 				+			'<a href="#" id="updateBtn">업데이트하기</a><br/>'
 				+		'</li>'
 				+		'<li class="list-group-item">'
@@ -156,4 +143,24 @@ function balanceMinus(e){
 			showAccountList();
 		}
 	})	
+}
+function registerAccount(e){
+	var selectedIdx=e.target.parentElement.children[0].children[0].selectedIndex;
+	var bankName=e.target.parentElement.children[0].children[0].options[selectedIdx].value;
+	var accountId= e.target.parentElement.children[1].children[0].value;
+	var balance=e.target.parentElement.children[2].children[0].value;
+
+	var data={'bankName':bankName,'accountId':accountId,'balance':balance}
+
+	$.ajax({
+		url:"accountRegister.json",
+		type:"post",
+		data:JSON.stringify(data),
+		dataType:"json",
+		contentType:"application/json",
+		success:function(rslt){
+			console.log(rslt);
+			showAccountList();
+		}
+	})
 }

@@ -1,5 +1,6 @@
 package kr.or.myweb.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,16 @@ public class StockServiceImpl implements StockService {
 	public Long registerStock(StockDto stockDto) {
 		Long id = stockDao.insertStockOne(stockDto);
 		return id;
+	}
+	@Override
+	public BigDecimal getTotalAmount() {
+		int totalCnt = stockDao.selectStockTotalCnt();
+		List<StockDto> stocklist= stockDao.selectStockList(0, totalCnt);
+		BigDecimal amount =new BigDecimal("0");
+		for (StockDto dto: stocklist) {
+			amount=amount.add(dto.getPrchsAmnt());
+		}
+		return amount;
 	}
 
 }

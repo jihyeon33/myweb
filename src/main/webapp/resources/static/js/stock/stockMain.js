@@ -9,7 +9,8 @@ $(document).ready(function(){
 		}
 	});
 	$(document).on("click","#updateBtn",function(e){
-		confirm("xx항목에 대해 업데이트 하실 사항이 있으십니까?");
+		var item= e.target.parentElement.parentElement.getAttribute('item');
+		alert(item+"의 업데이트 페이지로 이동합니다.");
 	});
 	
 });
@@ -21,16 +22,20 @@ function showList(){
 		contentType:"application/json",
 		success:function(rslt){
 			console.log(rslt);
+			$('#totalCnt').text(rslt.totalCnt);
+			$('#totalAmount').text(rslt.totalAmount);
+			
+			var stocklist= rslt.stocklist;
 			var html='';
-			for(var i=0; i<rslt.length; i++){
+			for(var i=0; i<stocklist.length; i++){
 				html
-				+='<tr>'
-				+'<th scope="row">'+rslt[i].item+'</th>'
-				+'<td>'+rslt[i].rtnQnty+'</td>'
-				+'<td>'+rslt[i].prchsAmnt+'</td>'
+				+='<tr item='+stocklist[i].item+'>'
+				+'<th scope="row">'+stocklist[i].item+'</th>'
+				+'<td>'+stocklist[i].rtnQnty+'</td>'
+				+'<td>'+stocklist[i].prchsAmnt+'</td>'
 				+'<td>'
-				+'<a href="http://localhost:8080/myweb/stock/stockUpdate.do?id='+rslt[i].id+'" id="updateBtn">업데이트하기</a>'
-				+'<a href="#" id="deleteBtn" itemId='+rslt[i].id+'>삭제하기</a>'
+				+'<a href="http://localhost:8080/myweb/stock/stockUpdate.do?item='+stocklist[i].item+'" id="updateBtn">업데이트하기</a><br/>'
+				+'<a href="#" id="deleteBtn" itemId='+stocklist[i].id+'>삭제하기</a>'
 				+'</td>'
 				+'</tr>';
 			}
@@ -39,9 +44,8 @@ function showList(){
 	});
 }
 function deleteOne(e){
-	var target= e.currentTarget;
 	//ajax호출
-	var id = target.getAttribute('itemId');
+	var id = e.currentTarget.getAttribute('itemId');
 	var data={'id': id };
 	$.ajax({
 		url:"stockDelete.json",

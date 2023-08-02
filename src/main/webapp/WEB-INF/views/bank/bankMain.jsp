@@ -28,23 +28,21 @@
 
 	<div class="p-3 mb-2 bg-warning text-dark bg-opacity-50">
 		계좌를 추가로 등록하시겠습니까?
-		<form action="accountRegister.json" method="POST">
-			<p>은행 : 
-				<select name="bankName">
-					<option value="국민">국민은행</option>
-					<option value="신한">신한은행</option>
-					<option value="우리">우리은행</option>
-					<option value="농협">농협은행</option>
-					<option value="수협">수협은행</option>
-					<option value="부산">부산은행</option>
-					<option value="광주">광주은행</option>
-					<option value="카카오">카카오뱅크</option>
-				</select>
-			</p>
-			<p>계좌 번호 : <input type="text" name="accountId"/></p>
-			<p>잔액 : <input type="text" name="balance" value="예) 510000"/></p>
-			<input type="submit" value="등록하기" id="registerBtn"/>
-		</form>
+		<p>은행 : 
+			<select name="bankName">
+				<option value="국민">국민은행</option>
+				<option value="신한">신한은행</option>
+				<option value="우리">우리은행</option>
+				<option value="농협">농협은행</option>
+				<option value="수협">수협은행</option>
+				<option value="부산">부산은행</option>
+				<option value="광주">광주은행</option>
+				<option value="카카오">카카오뱅크</option>
+			</select>
+		</p>
+		<p>계좌 번호 : <input type="text" name="accountId"/></p>
+		<p>잔액 : <input type="text" name="balance" value="예) 510000"/></p>
+		<input type="button" value="등록하기" id="registerBtn"/>
 	</div>
 
 

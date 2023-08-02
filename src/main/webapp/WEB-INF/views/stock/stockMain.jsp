@@ -20,8 +20,8 @@
 </div>
 
 <div class="alert alert-info" role="alert">
-xx님은 총 x개 종목을 보유하고 계십니다.
-총 매수금액: xx원
+${userName}님은 총 <span id="totalCnt">${totalCnt}</span>개 종목을 보유하고 계십니다.
+총 매수금액: <span id="totalAmount">${totalAmount}</span>원
 </div>
 
 <div id="stocklist">

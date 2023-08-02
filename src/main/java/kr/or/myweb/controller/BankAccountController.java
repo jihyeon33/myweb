@@ -1,20 +1,20 @@
 package kr.or.myweb.controller;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.myweb.dto.BankAccountDto;
 import kr.or.myweb.dto.LoginDto;
@@ -47,27 +47,10 @@ public class BankAccountController {
         
         return list;
     }
-    @GetMapping(path="/bank/jsonViewTEST.json")
-    public ModelAndView jsonViewTEST(){
-    	System.out.println("jsonViewTEST 들어옴");
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	int totalAccountsCnt= bankAccountService.getAccountsTotalCnt();
-    	List<BankAccountDto> accountlist= bankAccountService.getAccountList(0, totalAccountsCnt); 
-        mv.addObject("accountlist",accountlist);
-        return mv;
-    }
-    @GetMapping(path="/bank/jsonViewTEST2.json")
-    public String jsonViewTEST2(ModelMap model){
-    	System.out.println("jsonViewTEST2 들어옴");
-    	int totalAccountsCnt= bankAccountService.getAccountsTotalCnt();
-    	List<BankAccountDto> accountlist= bankAccountService.getAccountList(0, totalAccountsCnt);  
-    	model.addAttribute("accountlist", accountlist);
-    	return "jsonView";
-    }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////    
     @GetMapping(path = "/bank/bankMain.do")
-    public String doBankMain(HttpSession httpSession, RedirectAttributes rttr,ModelMap model) throws Exception {
+    public String doBankMain(HttpSession httpSession, Model model) throws Exception {
 
 		String time =bankAccountService.getTime();
 		LoginDto loginDto= (LoginDto) httpSession.getAttribute("loginDto");
@@ -75,30 +58,22 @@ public class BankAccountController {
 		model.addAttribute("time", time);
 		model.addAttribute("userName", userName);
 		
-		//총 계좌 수
-		int totalCnt= bankAccountService.getAccountsTotalCnt();
-		//총 잔액
-		BigDecimal totalBalance = new BigDecimal(0);
-    	List<BankAccountDto> accountlist= bankAccountService.getAccountList(0, totalCnt);
-    	for(BankAccountDto account :accountlist) {
-    		totalBalance =totalBalance.add(account.getBalance());
-    	}
-    	model.addAttribute("totalCnt", totalCnt);
-    	model.addAttribute("totalBalance", totalBalance);
-		
         return "bank/bankMain"; 
     }
     @GetMapping(path="/bank/accountlist.json")
-    @ResponseBody
-    public List<BankAccountDto> jsonGetAccountlist(){
+    public String jsonGetAccountlist(Model model){
     	int totalAccountsCnt= bankAccountService.getAccountsTotalCnt();
     	List<BankAccountDto> accountlist= bankAccountService.getAccountList(0, totalAccountsCnt);
-    	return accountlist;
+    	BigDecimal totalAccountsBalance = bankAccountService.getTotalAccountsBalance();
+    	model.addAttribute("totalAccountsCnt", totalAccountsCnt);
+    	model.addAttribute("accountlist", accountlist);
+    	model.addAttribute("totalAccountsBalance", totalAccountsBalance);
+    	return "jsonView";
     }
     @PostMapping(path="/bank/accountRegister.json")
-    public String jsonAccountRegister(BankAccountDto bankAccountDto){
+    public String jsonAccountRegister(@RequestBody BankAccountDto bankAccountDto){
     	bankAccountService.registerAccount(bankAccountDto);
-    	return "bank/bankMain";
+    	return "jsonView";
     }
 
     @PostMapping(path="/bank/balancePlus.json")
@@ -126,5 +101,11 @@ public class BankAccountController {
     	int cnt = bankAccountService.deleteAccount(accountId);
     	return cnt;
     	
+    }
+    @PostMapping(path="/bank/accountCheck.json")
+    public String jsonAccountCheck(@RequestBody BankAccountDto bankAccountDto, Model model) {
+    	int flag = bankAccountService.isExistenceAccount(bankAccountDto.getAccountId());
+    	model.addAttribute("flag", flag);
+    	return "jsonView";
     }
 }
