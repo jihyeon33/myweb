@@ -43,7 +43,7 @@ public class StockDao {
 	}
 	//selectOne
 	public StockDto selectStockOne(String item) {
-		Map<String,String> params = Collections.singletonMap("itme", item);
+		Map<String,String> params = Collections.singletonMap("item", item);
 		StockDto stock = jdbc.queryForObject(SELECT_ONE_BY_ITEM, params, rowMapper);
 		return stock;
 	}
@@ -54,10 +54,11 @@ public class StockDao {
 		return cnt;
 	}
 	//updateOne
-	public int updateStockOne(StockDto stocDto) {
+	public int updateStockOne(StockDto stockDto) {
 		Map<String,Object> params = new HashMap<>();
-		String item = stocDto.getItem();
-		params.put("item", item);
+		params.put("item", stockDto.getItem());
+		params.put("rtnQnty", stockDto.getRtnQnty());
+		params.put("prchsAmnt", stockDto.getPrchsAmnt());
 		int cnt = jdbc.update(UPDATE_ONE_BY_ITEM, params);
 		return cnt;
 	}

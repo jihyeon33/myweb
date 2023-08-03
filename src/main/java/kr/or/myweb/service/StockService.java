@@ -11,5 +11,9 @@ public interface StockService {
 	public int deleteStock(Long item);
 	public Long registerStock(StockDto stockDto);
 	public BigDecimal getTotalAmount();
+	public List<StockDto> getTotalStockList();
+	public int stockBuy(StockDto stockDto);
+	public int stockSell(StockDto stockDto);
+	public StockDto getStockOne(String item);
 
 }

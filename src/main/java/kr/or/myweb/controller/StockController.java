@@ -53,7 +53,10 @@ public class StockController {
 		return cnt;
 	}
 	@GetMapping(path="/stock/stockRegister.do")
-	public String doStockRegister() {
+	public String doStockRegister(HttpSession httpsession, Model model) {
+		LoginDto loginDto=(LoginDto)httpsession.getAttribute("loginDto");
+		String userid = loginDto.getUserId();
+		model.addAttribute("userid", userid);
 		return "stock/stockRegister";
 	}
 	@PostMapping(path="/stock/stockRegister.json")
@@ -70,20 +73,42 @@ public class StockController {
 		return 1;
 	}
 	@GetMapping(path="/stock/stockUpdate.do")
-	public String doStockUpdate(@ModelAttribute StockDto stockDto) {
+	public String doStockUpdate(HttpSession httpsession,@ModelAttribute StockDto stockDto) {
 		String item = stockDto.getItem();
 		System.out.println("stockUpdate들어옴");
 		System.out.println(item);
 		return "stock/stockUpdate";
 	}
 	@PutMapping(path="/stock/bought.json")
-	public int jsonStockBought() {
-		return 0;
+	public String jsonStockBought(@RequestBody StockDto stockDto, Model model) {
+		int cnt = stockService.stockBuy(stockDto);
+		model.addAttribute("cnt", cnt);
+		return "jsonView";
 	}
 	@PutMapping(path="/stock/sold.json")
-	public int jsonStockSold() {
-		return 0;
+	public String jsonStockSold(@RequestBody StockDto stockDto, Model model) {
+		int cnt = stockService.stockSell(stockDto);
+		model.addAttribute("cnt", cnt);
+		return "jsonView";
 	}
-
-
+	@PostMapping(path="/stock/stockItemCheck.json")
+	public String jsonStockItemCheck(@RequestBody StockDto stockDto, Model model) {
+		int flag=0;
+		List<StockDto> totallist= stockService.getTotalStockList();
+		String item = stockDto.getItem();
+		for(StockDto dto :totallist) {
+			if(item.equals(dto.getItem())) {
+				flag=1;
+				break;
+			}
+		}
+		model.addAttribute("flag", flag);
+		return"jsonView";
+	}
+	@GetMapping(path="/stock/stockInfo.json")
+	public String jsonStockInfo(@ModelAttribute StockDto stockDto, Model model) {
+		StockDto stock = stockService.getStockOne(stockDto.getItem());
+		model.addAttribute("stock", stock);
+		return "jsonView";
+	}
 }
