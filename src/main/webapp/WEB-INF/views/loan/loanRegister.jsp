@@ -11,7 +11,7 @@
 <body>
 	<div class="dropdown">
 	  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-	    ${userName}님 반갑습니다.
+	    ${loginDto.userId}님 반갑습니다.
 	  </button>
 	  <ul class="dropdown-menu">
 	    <li><a class="dropdown-item" href="#">My page</a></li>
@@ -22,8 +22,8 @@
 	<div class="p-3 mb-2 bg-info text-dark bg-opacity-50">
 		대출하신 정보를 입력해 주세요.
 		<p><input type="text" name="lender" value="대출처"/></p>
-		<p><input type="text" name="lender" value="대출금"/></p>
-		<p><input type="text" name="lender" value="상환예정일"/></p>
+		<p><input type="text" name="amount" value="대출금"/></p>
+		<p><input type="text" name="repayDate" value="상환예정일"/></p>
 		<button type="button" id="registerBtn">추가하기</button>
 	</div>
 	
