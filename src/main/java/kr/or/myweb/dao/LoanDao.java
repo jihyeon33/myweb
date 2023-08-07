@@ -50,8 +50,8 @@ public class LoanDao {
 	//insertOne
 	public Long insertLoanOne(LoanDto loanDto) {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(loanDto);
-		Long cnt = insertAction.executeAndReturnKey(params).longValue();
-		return cnt;
+		Long id = insertAction.executeAndReturnKey(params).longValue();
+		return id;
 	}
 	//updateOne
 	public int updateLoanOne(LoanDto loanDto) {

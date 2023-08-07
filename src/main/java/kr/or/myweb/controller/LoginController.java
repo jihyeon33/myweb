@@ -31,6 +31,7 @@ public class LoginController {
 		session.setAttribute("loginDto", loginDto);
 		
 		if(session.getAttribute("loginDto") != null) {
+			System.out.println(loginDto.getId());
 			System.out.println(loginDto.getEmail());
 			System.out.println(loginDto.getRegDate());	
 			rttr.addFlashAttribute("msg", "로그인 되었습니다.");  

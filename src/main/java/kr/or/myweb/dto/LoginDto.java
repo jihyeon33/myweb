@@ -1,12 +1,19 @@
 package kr.or.myweb.dto;
 
 public class LoginDto {
+	private Long id;
 	private String userId;
 	private String password;
 	private String email;
 	private String telNo;
 	private String regDate;
 	private String updateDate;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getUserId() {
 		return userId;
 	}

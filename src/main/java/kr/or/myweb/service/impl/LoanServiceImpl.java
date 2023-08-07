@@ -25,5 +25,10 @@ public class LoanServiceImpl implements LoanService {
 		List<LoanDto> loanlist = loanDao.selectLoanList(start, limit);
 		return loanlist;
 	}
+	@Override
+	public Long registerLoan(LoanDto loanDto) {
+		Long id = loanDao.insertLoanOne(loanDto);
+		return id;
+	}
 
 }
