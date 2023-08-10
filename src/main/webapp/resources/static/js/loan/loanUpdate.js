@@ -1,6 +1,8 @@
 /** author: mjh
  *  since: 2023.08.08
  */
+var loanId=$('input[id=loanId]').val();
+console.log(loanId);
 $(document).ready(function(){
 	$(document).on("click","#moreBtn",function(e){
 		$('#more').show();
@@ -17,10 +19,15 @@ $(document).ready(function(){
 		repay(e);
 	})
 });
+function showLoan(){}
 function more(e){
-	var data={};
+	var option='m';
+	var lender=e.target.parentElement.children[0].children[1].value;
+	var amount=e.target.parentElement.children[1].children[1].value;
+	var repayDate = e.target.parentElement.children[2].children[1].value;
+	var data={'updateOption':option,'lender':lender,'amount':amount,'repayDate':repayDate};
 	$.ajax({
-		url:"",
+		url:loanId,
 		type:"put",
 		data:JSON.stringify(data),
 		dataType:"json",
@@ -29,9 +36,12 @@ function more(e){
 	})
 }
 function repay(e){
-	var data={};
+	var option='r';
+	var lender=e.target.parentElement.children[0].children[1].value;
+	var amount=e.target.parentElement.children[1].children[1].value;
+	var data={'updateOption':option,'lender':lender,'amount':amount};
 	$.ajax({
-		url:"",
+		url:loanId,
 		type:"put",
 		data:JSON.stringify(data),
 		dataType:"json",

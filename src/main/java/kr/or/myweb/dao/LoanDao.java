@@ -33,8 +33,8 @@ public class LoanDao {
 		Map<String,Integer> params = new HashMap<>();
 		params.put("start",start);
 		params.put("limit",limit);
-		List<LoanDto> stocklist = jdbc.query(SELECT_LIST, params,rowMapper);
-		return stocklist;
+		List<LoanDto> loanlist = jdbc.query(SELECT_LIST, params,rowMapper);
+		return loanlist;
 	}
 	//selectCnt
 	public int selectLoanTotalCnt() {
@@ -42,10 +42,10 @@ public class LoanDao {
 		return totalCnt;
 	}
 	//selectOne
-	public LoanDto selectLoanOne(String lender) {
-		Map<String,String> params = Collections.singletonMap("lender", lender);
-		LoanDto stock = jdbc.queryForObject(SELECT_ONE_BY_ITEM, params, rowMapper);
-		return stock;
+	public LoanDto selectLoanOne(Long id) {
+		Map<String,Long> params = Collections.singletonMap("id", id);
+		LoanDto loan = jdbc.queryForObject(SELECT_ONE_BY_ID, params, rowMapper);
+		return loan;
 	}
 	//insertOne
 	public Long insertLoanOne(LoanDto loanDto) {
@@ -56,15 +56,16 @@ public class LoanDao {
 	//updateOne
 	public int updateLoanOne(LoanDto loanDto) {
 		Map<String,Object> params = new HashMap<>();
-		String lender = loanDto.getLender();
-		params.put("lender", lender);
-		int cnt = jdbc.update(UPDATE_ONE_BY_ITEM, params);
+		params.put("id",loanDto.getId());
+		params.put("amount", loanDto.getAmount());
+		params.put("repayDate", loanDto.getRepayDate());
+		int cnt = jdbc.update(UPDATE_ONE_BY_ID, params);
 		return cnt;
 	}
 	//deleteOne
-	public int deleteLoanOne(String lender) {
-		Map<String,String> params= Collections.singletonMap("lender", lender);
-		int cnt = jdbc.update(DELETE_ONE_BY_ITEM, params);
+	public int deleteLoanOne(Long id) {
+		Map<String,Long> params= Collections.singletonMap("id", id);
+		int cnt = jdbc.update(DELETE_ONE_BY_ID, params);
 		return cnt;
 	}
 }

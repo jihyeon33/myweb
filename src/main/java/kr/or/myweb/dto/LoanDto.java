@@ -11,6 +11,7 @@ public class LoanDto {
 	private Timestamp repayDate;  //상환예정일
 	private Timestamp regDate;   //등록일자
 	private Timestamp updateDate;  //최근업데이트일자
+	private String updateOption;  // r:상환  m:추가대출
 	public Long getId() {
 		return id;
 	}
@@ -52,6 +53,12 @@ public class LoanDto {
 	}
 	public void setUpdateDate(Timestamp updateDate) {
 		this.updateDate = updateDate;
+	}
+	public String getUpdateOption() {
+		return updateOption;
+	}
+	public void setUpdateOption(String updateOption) {
+		this.updateOption = updateOption;
 	}
 
 }

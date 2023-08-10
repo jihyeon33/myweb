@@ -44,7 +44,7 @@
 		  <div class="card-body">
 		    <h5 class="card-title">Loan</h5>
 		    <p class="card-text">manage your loan amounts.</p>
-		    <a href="loan/loanMain.do" class="btn btn-primary">loan 서비스 이용하기</a>
+		    <a href="loan/loanMain" class="btn btn-primary">loan 서비스 이용하기</a>
 		  </div>
 		</div>
 	</div>
