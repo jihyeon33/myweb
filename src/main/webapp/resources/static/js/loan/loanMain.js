@@ -15,11 +15,14 @@ function showLoanList(){
 		contentTyp:"application/json",
 		success:function(rslt){
 			console.log(rslt);
+			var totalamount =rslt.totalAmount;
+			$('#totalamount').text(totalamount);
+			var list =rslt.loanlist;
 			var html='<ul class="list-group">';
-			for(var i=0;i<rslt.length;i++){
+			for(var i=0;i<list.length;i++){
 				html+='<li class="list-group-item">'
-				+'<input class="form-check-input me-1" type="radio" name="listGroupRadio" value="'+rslt[i].id+'" id="'+i+1+'Radio" checked>'
-				+'<label class="form-check-label" for="'+i+1+'Radio">'+rslt[i].lender+" 대출금: "+rslt[i].amount+" 상환예정일: "+rslt[i].repayDate+'</label>'
+				+'<input class="form-check-input me-1" type="radio" name="listGroupRadio" value="'+list[i].id+'" id="'+i+1+'Radio" checked>'
+				+'<label class="form-check-label" for="'+i+1+'Radio">'+list[i].lender+" 대출금: "+list[i].amount+" 상환예정일: "+list[i].repayDate+'</label>'
 				+'</li>';
 			}
 			html+="</ul>";

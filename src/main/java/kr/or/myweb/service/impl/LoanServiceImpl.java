@@ -63,5 +63,15 @@ public class LoanServiceImpl implements LoanService {
 		int cnt = loanDao.updateLoanOne(futureLoan);
 		return cnt;
 	}
+	@Override
+	public BigDecimal getLoanTotalAmount() {
+		int totalCnt = loanDao.selectLoanTotalCnt();
+		List<LoanDto> loanlist = loanDao.selectLoanList(0, totalCnt);
+		BigDecimal totalAmount = new BigDecimal(0);
+		for(LoanDto dto : loanlist) {
+			totalAmount =totalAmount.add(dto.getAmount());
+		}
+		return totalAmount;
+	}
 
 }

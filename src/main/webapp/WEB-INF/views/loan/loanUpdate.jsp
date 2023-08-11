@@ -58,7 +58,7 @@
 	<div class="input-group mb-3">
 	  <span class="input-group-text">상환 예정 일자:</span>
 	  <input type="text" id="repayDate" class="form-control" aria-label="Amount (to the nearest dollar)">
-	  <span class="input-group-text">2025-03-01 과 같은 형식으로 년도 및 날짜를 자리수에 맞게 채워주세요.</span>
+	  <span class="input-group-text">2025-03-01 00:00:00와 같은 형식으로 년도 및 날짜를 자리수에 맞게 채워주세요.</span>
 	</div>
 	<button type="button" id="moreUpdateBtn">추가하기</button>
 </div>
@@ -74,6 +74,7 @@
 	</div>
 	<button type="button" id="repayUpdateBtn">추가하기</button>
 </div>
+<a href="./../loanMain">loanMain 페이지로 이동하기</a>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

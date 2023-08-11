@@ -19,7 +19,18 @@ $(document).ready(function(){
 		repay(e);
 	})
 });
-function showLoan(){}
+function showLoan(){
+	$.ajax({
+		url:"getLoan.json?id="+loanId,
+		type:"get",
+		contentType:"application/json",
+		success:function(rslt){
+			console.log(rslt);
+			$('#amount').text(rslt.loandto.amount);
+			$('#repayDate').text(rslt.loandto.repayDate);
+		}
+	})
+}
 function more(e){
 	var option='m';
 	var lender=e.target.parentElement.children[0].children[1].value;
@@ -32,7 +43,10 @@ function more(e){
 		data:JSON.stringify(data),
 		dataType:"json",
 		contentType:"application/json",
-		success:function(rslt){}
+		success:function(rslt){
+			alert("성공적으로 업데이트하였습니다.");
+			showLoan();
+		}
 	})
 }
 function repay(e){
@@ -46,6 +60,9 @@ function repay(e){
 		data:JSON.stringify(data),
 		dataType:"json",
 		contentType:"application/json",
-		success:function(rslt){}
+		success:function(rslt){
+			alert("성공적으로 업데이트하였습니다.");
+			showLoan();
+		}
 	})	
 }

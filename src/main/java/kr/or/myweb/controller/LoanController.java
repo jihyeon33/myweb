@@ -1,11 +1,13 @@
 package kr.or.myweb.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,11 +34,13 @@ public class LoanController {
 		return "loan/loanMain";
 	}
 	@GetMapping(path="/loan/loanlist.json")
-	@ResponseBody
-	public List<LoanDto> jsonLoanList(){
+	public String jsonLoanList(Model model){
 		int totalCnt =  loanService.getLoanTotalCnt();
 		List<LoanDto> loanlist = loanService.getLoanList(0,totalCnt);
-		return loanlist;
+		BigDecimal totalAmount = loanService.getLoanTotalAmount();
+		model.addAttribute("loanlist",loanlist);
+		model.addAttribute("totalAmount",totalAmount);
+		return "jsonView";
 	}
 	@GetMapping(path="/loan/loanUpdate/{id}")
 	public String doLoanUpdate(HttpSession httpsession, @PathVariable("id")Long id,Model model) {
@@ -73,6 +77,14 @@ public class LoanController {
 		loandto.setUserId(userId);
 
 		Long id = loanService.registerLoan(loandto);
+		return "jsonView";
+	}
+	@GetMapping(path="loan/loanUpdate/getLoan.json")
+	public String jsonGetLoan(@RequestParam("id")Long id, Model model) {
+		System.out.println(id);
+		LoanDto loandto = loanService.getLoan(id);
+		System.out.println(loandto.getRepayDate());
+		model.addAttribute("loandto", loandto);
 		return "jsonView";
 	}
 }

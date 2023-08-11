@@ -1,5 +1,6 @@
 package kr.or.myweb.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import kr.or.myweb.dto.LoanDto;
@@ -11,4 +12,5 @@ public interface LoanService {
 	public LoanDto getLoan(Long id);
 	public int moreLoan(LoanDto loanDto);
 	public int repayLoan(LoanDto loanDto);
+	public BigDecimal getLoanTotalAmount();
 }

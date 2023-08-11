@@ -20,7 +20,7 @@
 	</div>
 	
 	<div class="alert alert-info" role="alert">
-		${loginDto.userId}님이 갚아야 할 총 대출잔액은 <span id="amount">xx</span>입니다.
+		${loginDto.userId}님이 갚아야 할 총 대출잔액은 <span id="totalamount"></span>원 입니다.
 	</div>
 	<div id = "loanlist"></div>
 	<div><button id='updateBtn'>업데이트하기</button></div>
