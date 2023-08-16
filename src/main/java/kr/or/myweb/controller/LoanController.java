@@ -3,20 +3,18 @@ package kr.or.myweb.controller;
 import java.math.BigDecimal;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.myweb.dto.LoanDto;
 import kr.or.myweb.dto.LoginDto;
@@ -85,6 +83,12 @@ public class LoanController {
 		LoanDto loandto = loanService.getLoan(id);
 		System.out.println(loandto.getRepayDate());
 		model.addAttribute("loandto", loandto);
+		return "jsonView";
+	}
+	@DeleteMapping(path="/loan/loanDelete/{id}")
+	public String deleteLoan(@PathVariable("id")Long id, Model model) {
+		int cnt = loanService.deleteLoan(id);
+		model.addAttribute("cnt", cnt);
 		return "jsonView";
 	}
 }

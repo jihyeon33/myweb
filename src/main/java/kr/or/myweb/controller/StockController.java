@@ -53,22 +53,22 @@ public class StockController {
 		return cnt;
 	}
 	@GetMapping(path="/stock/stockRegister.do")
-	public String doStockRegister(HttpSession httpsession, Model model) {
-		LoginDto loginDto=(LoginDto)httpsession.getAttribute("loginDto");
-		String userid = loginDto.getUserId();
-		model.addAttribute("userid", userid);
+	public String doStockRegister(HttpSession httpsession) {
 		return "stock/stockRegister";
 	}
 	@PostMapping(path="/stock/stockRegister.json")
 	@ResponseBody
-	public int jsonStockRegister(@RequestBody StockDto stockDto) {
+	public int jsonStockRegister(HttpSession httpsession, @RequestBody StockDto stockDto) {
+		LoginDto loginDto= (LoginDto) httpsession.getAttribute("loginDto");
+		Long userid=loginDto.getId();
+		
 		//총 매수금액 = 매수단가 x 매수량
 		BigDecimal prchsAmnt = stockDto.getPrchsAmnt();
 		int rtnQnty = stockDto.getRtnQnty();
 		prchsAmnt= prchsAmnt.multiply(new BigDecimal(rtnQnty));
 		
 		stockDto.setPrchsAmnt(prchsAmnt);
-		stockDto.setUserId(new Long(1));
+		stockDto.setUserId(userid);
 		Long id = stockService.registerStock(stockDto);
 		return 1;
 	}

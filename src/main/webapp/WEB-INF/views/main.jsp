@@ -13,18 +13,24 @@
     
 	<div class="dropdown">
 	  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-	    ${userName}님 반갑습니다.
+	    ${loginDto.userId}님 반갑습니다.
 	  </button>
 	  <ul class="dropdown-menu">
 	    <li><a class="dropdown-item" href="#">My page</a></li>
-	    <li><a class="dropdown-item" href="logut.do">Logout</a></li>
+	    <li><a class="dropdown-item" href="#">Logout</a></li>
 	  </ul>
 	</div>
-	<h5>접속하신 현재 시간은 ${time} 입니다.</h5>
-	<h5>어떤 서비스를 이용하고 싶으신가요?</h5>
+	<div class="alert alert-info" role="alert">
+		${loginDto.userId}님의 총 자산을 알려드리겠습니다.<br/>
+		${loginDto.userId}님의 총 자산은 ${totalAmount}원 입니다.
+	</div>
+	<div class="alert alert-info" role="alert">
+		접속하신 현재 시간은 ${time} 입니다.<br/>
+		어떤 서비스를 이용하고 싶으신가요?
+	</div>
 	<div class="row">
 		<div class="card" style="width: 18rem;">
-		  <img src="resources/static/img/bank.jpeg" class="card-img-top" alt="...">
+		  <img src="resources/static/img/bank.png" class="card-img-top" alt="...">
 		  <div class="card-body">
 		    <h5 class="card-title">Bank</h5>
 		    <p class="card-text">manage your bank accounts.</p>
@@ -32,7 +38,7 @@
 		  </div>
 		</div>
 		<div class="card" style="width: 18rem;">
-		  <img src="resources/static/img/stock.jpeg" class="card-img-top" alt="...">
+		  <img src="resources/static/img/stock.png" class="card-img-top" alt="...">
 		  <div class="card-body">
 		    <h5 class="card-title">Stock</h5>
 		    <p class="card-text">manage your stock accounts.</p>

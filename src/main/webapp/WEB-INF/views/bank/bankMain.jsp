@@ -12,7 +12,7 @@
 <body>
 	<div class="dropdown">
 	  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-	    ${userName}님 반갑습니다.
+	    ${loginDto.userId}님 반갑습니다.
 	  </button>
 	  <ul class="dropdown-menu">
 	    <li><a class="dropdown-item" href="#">My page</a></li>
@@ -20,7 +20,7 @@
 	  </ul>
 	</div>
 	<div class="alert alert-info" role="alert">
-		${userName}님이 보유하신 계좌는 총 <span id="totalCnt">${totalCnt}</span>개 입니다. <br/>
+		${loginDto.userId}님이 보유하신 계좌는 총 <span id="totalCnt">${totalCnt}</span>개 입니다. <br/>
 		보유 잔액은 총 <span id="totalBalance">${totalBalance}</span>원 입니다.
 	</div>
 	

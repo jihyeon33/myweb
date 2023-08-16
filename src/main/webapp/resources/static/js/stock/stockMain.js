@@ -34,7 +34,7 @@ function showList(){
 				+'<td>'+stocklist[i].rtnQnty+'</td>'
 				+'<td>'+stocklist[i].prchsAmnt+'</td>'
 				+'<td>'
-				+'<a href="http://localhost:8080/myweb/stock/stockUpdate.do?item='+stocklist[i].item+'" id="updateBtn">업데이트하기</a><br/>'
+				+'<a href="http://twinhks1.cafe24.com/stock/stockUpdate.do?item='+stocklist[i].item+'" id="updateBtn">업데이트하기</a><br/>'
 				+'<a href="#" id="deleteBtn" itemId='+stocklist[i].id+'>삭제하기</a>'
 				+'</td>'
 				+'</tr>';

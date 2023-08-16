@@ -16,18 +16,17 @@
 	  <div class="mb-3">
 	    <label for="id" class="form-label">Id</label>
 	    <input type="text" class="form-control" id="id" aria-describedby="idlHelp" name="id">
-	    <div id="idlHelp" class="form-text">We'll never share your email with anyone else.</div>
 	  </div>
 	  <div class="mb-3">
 	    <label for="password" class="form-label">Password</label>
 	    <input type="password" class="form-control" id="password" name="password">
 	  </div>
-	  <div class="mb-3 form-check">
-	    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-	    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-	  </div>
 	  <button type="submit" class="btn btn-primary">로그인</button>
 	</form>
+	<div>
+		테스트용으로 아래 아이디,비번을 사용하세요.(user 테이블에 등록되어있습니다.)<br/>
+		아이디: jihyeon, 비번: 1234
+	</div>
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>

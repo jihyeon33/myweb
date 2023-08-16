@@ -11,11 +11,11 @@
 <body>
 	<div class="dropdown">
 	  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-	    ${userid}님 반갑습니다.
+	    ${loginDto.userId}님 반갑습니다.
 	  </button>
 	  <ul class="dropdown-menu">
 	    <li><a class="dropdown-item" href="#">My page</a></li>
-	    <li><a class="dropdown-item" href="logut.do">Logout</a></li>
+	    <li><a class="dropdown-item" href="#">Logout</a></li>
 	  </ul>
 	</div>
 	

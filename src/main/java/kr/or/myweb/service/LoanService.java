@@ -13,4 +13,5 @@ public interface LoanService {
 	public int moreLoan(LoanDto loanDto);
 	public int repayLoan(LoanDto loanDto);
 	public BigDecimal getLoanTotalAmount();
+	public int deleteLoan(Long id);
 }

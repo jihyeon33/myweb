@@ -16,7 +16,7 @@
   </button>
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="#">My page</a></li>
-    <li><a class="dropdown-item" href="logut.do">Logout</a></li>
+    <li><a class="dropdown-item" href="#">Logout</a></li>
   </ul>
 </div>
 <div>
@@ -60,7 +60,7 @@
 	  <input type="text" id="repayDate" class="form-control" aria-label="Amount (to the nearest dollar)">
 	  <span class="input-group-text">2025-03-01 00:00:00와 같은 형식으로 년도 및 날짜를 자리수에 맞게 채워주세요.</span>
 	</div>
-	<button type="button" id="moreUpdateBtn">추가하기</button>
+	<button type="button" id="moreUpdateBtn">업데이트</button>
 </div>
 <div class="p-3 mb-2 bg-info text-dark bg-opacity-50" style="display:none" id="repay">
 	<div class="input-group mb-3">
@@ -72,7 +72,7 @@
 	  <input type="text" id="amount" class="form-control" aria-label="Amount (to the nearest dollar)">
 	  <span class="input-group-text">원</span>
 	</div>
-	<button type="button" id="repayUpdateBtn">추가하기</button>
+	<button type="button" id="repayUpdateBtn">업데이트</button>
 </div>
 <a href="./../loanMain">loanMain 페이지로 이동하기</a>
 

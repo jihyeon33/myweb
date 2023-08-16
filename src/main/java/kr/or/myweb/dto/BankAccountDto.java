@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 
 public class BankAccountDto {
 	private Long id;
+	private Long userId;
 	private String accountId;
 	private String bankName;
 	private BigDecimal balance;
@@ -15,6 +16,12 @@ public class BankAccountDto {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public Long getUserId() {
+		return userId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 	public String getAccountId() {
 		return accountId;
@@ -46,5 +53,4 @@ public class BankAccountDto {
 	public void setUpdateDate(Timestamp updateDate) {
 		this.updateDate = updateDate;
 	}
-
 }

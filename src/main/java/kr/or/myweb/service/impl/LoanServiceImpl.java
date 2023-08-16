@@ -1,7 +1,6 @@
 package kr.or.myweb.service.impl;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +71,11 @@ public class LoanServiceImpl implements LoanService {
 			totalAmount =totalAmount.add(dto.getAmount());
 		}
 		return totalAmount;
+	}
+	@Override
+	public int deleteLoan(Long id) {
+		int cnt = loanDao.deleteLoanOne(id);
+		return cnt;
 	}
 
 }

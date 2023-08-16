@@ -10,11 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.myweb.dto.BankAccountDto;
 import kr.or.myweb.dto.LoginDto;
@@ -51,13 +49,8 @@ public class BankAccountController {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////    
     @GetMapping(path = "/bank/bankMain.do")
     public String doBankMain(HttpSession httpSession, Model model) throws Exception {
-
 		String time =bankAccountService.getTime();
-		LoginDto loginDto= (LoginDto) httpSession.getAttribute("loginDto");
-		String userName=loginDto.getUserId();
 		model.addAttribute("time", time);
-		model.addAttribute("userName", userName);
-		
         return "bank/bankMain"; 
     }
     @GetMapping(path="/bank/accountlist.json")
@@ -71,7 +64,11 @@ public class BankAccountController {
     	return "jsonView";
     }
     @PostMapping(path="/bank/accountRegister.json")
-    public String jsonAccountRegister(@RequestBody BankAccountDto bankAccountDto){
+    public String jsonAccountRegister(HttpSession httpSession, @RequestBody BankAccountDto bankAccountDto){
+		LoginDto loginDto= (LoginDto) httpSession.getAttribute("loginDto");
+		Long id=loginDto.getId();
+		System.out.println(id);
+		bankAccountDto.setUserId(id);
     	bankAccountService.registerAccount(bankAccountDto);
     	return "jsonView";
     }
