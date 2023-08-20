@@ -7,7 +7,7 @@
 - database : twinhks1
 - table : user, bank_account, stock_holding, loan_amount
 
-<img src="https://github.com/jihyeon33/resume/assets/61914526/1bb4dfa5-5e01-48d1-9554-e27146c5105e" width="450"/>
+<img src="https://github.com/jihyeon33/myweb/assets/61914526/b2238262-01b3-48ed-9d5f-71174b945aad" width="450"/>
 
 ### 프로젝트 구조:
 - Back-end
@@ -32,14 +32,14 @@
 - POST -/login/login.do :로그인 처리
 - POST -/login/logout.do : 로그아웃 처리
 
-<img src="https://github.com/jihyeon33/resume/assets/61914526/bf7c7114-4f4d-4aed-a5fa-c8746ad08b30" width="650"/>
+<img src="https://github.com/jihyeon33/myweb/assets/61914526/68cc7bd4-8268-4711-b33e-ff837b1d4be0" width="650"/>
 
 
 
 ##### 두번째 화면
 - GET - /main.do : 메인 화면
 
-<img src="https://github.com/jihyeon33/resume/assets/61914526/3d02cc57-1449-4c9c-837f-553d2fd0419f" width="650"/>
+<img src="https://github.com/jihyeon33/myweb/assets/61914526/da740e4c-bed4-4830-b3db-4285db2a9b3d" width="650"/>
 
 
 
@@ -52,7 +52,7 @@
 - POST - /bank/accountDelete.json : 계좌 삭제 ajax
 - POST - /bank/accountCheck.json : 계좌번호 동일 여부 유효성 체크 ajax
  
-<img src="https://github.com/jihyeon33/resume/assets/61914526/798de7d1-f18b-4e01-baaa-44a0177ba969" width="650"/>
+<img src="https://github.com/jihyeon33/myweb/assets/61914526/ae45ec3d-7d0e-4c07-9fd4-9830dbcf6227" width="650"/>
 
 ##### Stock 화면
 - GET - /stock/stockMain.do : stock메인 화면
@@ -61,47 +61,52 @@
 - GET - /stock/stockUpdate.do?item={해당 아이템} : 해당 주식 업데이트 화면으로 이동
 - GET - /stock/stockRegister.do : 주식 신규 등록 화면으로 이동
 
-<img src="https://github.com/jihyeon33/resume/assets/61914526/77a09640-9578-46e2-ab16-c870cc978550" width="650"/>
+<img src="https://github.com/jihyeon33/myweb/assets/61914526/89394928-e6ef-43d3-b01f-79d21badb58f" width="650"/>
 
 
 
 ##### stock 업데이트 화면
+- GET - /stock/stockUpdate.do?item={해당 아이템} : 해당 주식 업데이트 화면
 - GET - /stock/stockInfo.json?item={해당 아이템} : 해당 주식 정보 조회 ajax
 - PUT - /stock/bought.json : 주식 매수 정보 업데이트 ajax
 - PUT - /stock/sold.json : 주식 매도 정보 업데이트 ajax
 
-<img src="https://github.com/jihyeon33/resume/assets/61914526/34cb52f7-5a81-43a0-bafe-200c305e8da7" width="650"/>
-<img src="https://github.com/jihyeon33/resume/assets/61914526/93f9aa12-e76b-4b06-b285-078ac1a3da3e" width="650"/>
+<img src="https://github.com/jihyeon33/myweb/assets/61914526/6efae5f3-da94-4b40-a1ad-5595122db0f3" width="650"/>
+<img src="https://github.com/jihyeon33/myweb/assets/61914526/e0fb2d3e-94b0-4dc6-af4f-dee502bef1a0" width="650"/>
 
 
 ##### stock 신규 등록 화면
+- GET - /stock/stockRegister.do : 주식 신규 등록 화면
 - POST - /stock/stockRegister.json : 신규 주식 등록 ajax
 - POST - /stock/stockItemCheck.json : 주식 항목 기등록 여부 체크 ajax
-  
-<img src="https://github.com/jihyeon33/resume/assets/61914526/598835c1-58e0-44cb-94e9-a7a8094ee7f0" width="650"/>
+
+<img src="https://github.com/jihyeon33/myweb/assets/61914526/9b884fac-b320-4c8f-8b0e-237c44288450" width="650"/>
 
 
-
+##### loan 부터는 Restful api를 지키려 노력함.
 ##### loan 화면
 - GET - /loan/loanMain : 대출 메인화면
 - GET - /loan/loanlist.json : 전체 대출 리스트 조회 ajax
-- GET - /loan/loanUpdate/{id} : 해당 주식 업데이트 화면으로 이동
+- GET - /loan/loanUpdate/{id} : 해당 대출 업데이트 화면으로 이동
 - GET - /loan/loanRegister : 신규 대출 내역 등록 화면으로 이동
+- DELETE - /loan/loanDelete/{id} : 해당 대출 내역 삭제
 
-<img src="https://github.com/jihyeon33/resume/assets/61914526/6396e6a7-8d7b-4862-a84c-720b5f631ad5" width="650"/>
+<img src="https://github.com/jihyeon33/myweb/assets/61914526/c8c0b69e-bdaa-432a-b48c-2572be7c1b9f" width="650"/>
 
 
 
 ##### loan 업데이트 화면
+- GET - /loan/loanUpdate/{id} : 해당 대출 업데이트 화면
 - GET - loan/loanUpdate/getLoan.json?id={id} : 해당 대출항목 정보 조회 ajax
 - PUT - /loan/loanUpdate/{id} : 해당 대출 정보 업데이트 (추가 대출/ 대출 상환)  ajax
 
-<img src="https://github.com/jihyeon33/resume/assets/61914526/07287da0-1dfa-4aec-921f-3e9a631c9921" width="650"/>
-<img src="https://github.com/jihyeon33/resume/assets/61914526/b93f6ade-38c2-4379-b281-e4c384326e7d" width="650"/>
-<img src="https://github.com/jihyeon33/resume/assets/61914526/e0cef215-a425-4026-b514-8bf5a0a3d1fa" width="650"/>
+<img src="https://github.com/jihyeon33/myweb/assets/61914526/5a4afd78-360b-4524-9aff-9bbb8c884113" width="650"/>
+<img src="https://github.com/jihyeon33/myweb/assets/61914526/e6c5ff94-6402-42f1-a4f8-4308450722fc" width="650"/>
+<img src="https://github.com/jihyeon33/myweb/assets/61914526/1c3283fa-1b83-406e-ac81-1a89408f4067" width="650"/>
 
 
 ##### loan 신규등록 화면
+- GET - /loan/loanRegister : 신규 대출 내역 등록 화면
 - POST - loan/loanRegister.json : 신규 대출 내역 등록 ajax
-
-<img src="https://github.com/jihyeon33/resume/assets/61914526/3f8a3ac5-ccfd-41c4-af8f-ded2fe3c5e01" width="650"/>
+  
+<img src="https://github.com/jihyeon33/myweb/assets/61914526/5631d64d-0dc3-4064-aa65-73dd7e0087fb" width="650"/>
