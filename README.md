@@ -1,7 +1,6 @@
 ##### 배포 링크 : http://twinhks1.cafe24.com/login/login.do
 ##### 소스코드 (깃허브 주소) : https://github.com/jihyeon33/myweb
-##### 관련 기록 (개인 블로그 주소) : https://jihyeon33.tistory.com/category/%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4%20%28%EC%9B%B9%20%EA%B0%9C%EB%B0%9C%29/%EA%B3%84%EC%A2%8C%EA%B4%80%EB%A6%AC%20%EC%9B%B9%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98
-##### 화면 설계서 (ppt자료로 첨부) : [myWallet 기획서.pptx](https://github.com/jihyeon33/myweb/files/12378453/myWallet.pptx)
+##### 기획서 (ppt자료로 첨부) : [myWallet 기획서.pptx](https://github.com/jihyeon33/myweb/files/12378453/myWallet.pptx)
 
 ###  ERD:
 - database : twinhks1
